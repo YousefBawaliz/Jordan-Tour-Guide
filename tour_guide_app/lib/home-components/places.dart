@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 
 import 'package:tour_guide_app/Models/Destinations.dart';
@@ -18,14 +19,20 @@ class _PlacesState extends State<Places> {
       body: ListView(
         children: [
           Container(
-            margin: EdgeInsets.only(bottom: 10, top: 20),
-            child: Text(
-              "Wellcome in jordan",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
-                  fontWeight: FontWeight.w200),
-            ),
+            width: 20,
+            margin: EdgeInsets.only(bottom: 10, top: 20, left: 30, right: 150),
+            child: DefaultTextStyle(
+                style: TextStyle(
+                    fontStyle: FontStyle.italic,
+                    color: Colors.white,
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold),
+                child: AnimatedTextKit(
+                  animatedTexts: [
+                    TyperAnimatedText("Where do you want to go ?",
+                        speed: Duration(milliseconds: 100)),
+                  ],
+                )),
             alignment: Alignment.center,
           ),
           Container(
@@ -36,8 +43,9 @@ class _PlacesState extends State<Places> {
               child: TextFormField(
                 decoration: InputDecoration(
                   hintStyle: TextStyle(color: Colors.black),
-                  hintText: "Search",
-                  prefixIcon: Icon(
+                  hintText: "Search for place",
+                  suffixIcon: Icon(
+                    size: 30,
                     Icons.search,
                     color: Colors.black,
                   ),
@@ -45,67 +53,50 @@ class _PlacesState extends State<Places> {
                       borderRadius: BorderRadius.all(Radius.circular(25.0))),
                 ),
               )),
-          Row(
-            children: [
-              Expanded(
-                flex: 5,
-                child: ReUsableCard(
-                  siteData: _siteData,
-                  siteName: "Dead sea",
-                  hight: 300,
-                ),
-              ),
-              Expanded(
-                  flex: 5,
-                  child: ReUsableCard(
-                    siteData: _siteData,
-                    siteName: "Aqaba",
-                    hight: 270,
-                  )),
-            ],
+          Container(
+            child: ReUsableCard(
+              siteData: _siteData,
+              siteName: "Dead sea",
+            ),
           ),
-          Row(
-            children: [
-              Expanded(
-                flex: 5,
-                child: ReUsableCard(
-                  siteData: _siteData,
-                  siteName: "Im Qays",
-                  hight: 250,
-                ),
-              ),
-              Expanded(
-                  flex: 5,
-                  child: ReUsableCard(
-                      siteData: _siteData, siteName: "Ajloan", hight: 300)),
-            ],
+          Container(
+              child: ReUsableCard(
+            siteData: _siteData,
+            siteName: "Patra",
+          )),
+          Container(
+            child: ReUsableCard(
+              siteData: _siteData,
+              siteName: "Wadi Mujib",
+            ),
           ),
-          Row(
-            children: [
-              Expanded(
-                flex: 5,
-                child: ReUsableCard(
-                    siteData: _siteData, siteName: "Patra", hight: 300),
-              ),
-              Expanded(
-                  flex: 5,
-                  child: ReUsableCard(
-                      siteData: _siteData, siteName: "Jarash", hight: 250)),
-            ],
+          Container(
+              child: ReUsableCard(
+            siteData: _siteData,
+            siteName: "Ajloan",
+          )),
+          Container(
+            child: ReUsableCard(
+              siteData: _siteData,
+              siteName: "Dead sea",
+            ),
           ),
-          Row(
-            children: [
-              Expanded(
-                flex: 5,
-                child: ReUsableCard(
-                    siteData: _siteData, siteName: "wadi rum", hight: 250),
-              ),
-              Expanded(
-                  flex: 5,
-                  child: ReUsableCard(
-                      siteData: _siteData, siteName: "Wadi Mujib", hight: 300)),
-            ],
+          Container(
+              child: ReUsableCard(
+            siteData: _siteData,
+            siteName: "Jarash",
+          )),
+          Container(
+            child: ReUsableCard(
+              siteData: _siteData,
+              siteName: "wadi rum",
+            ),
           ),
+          Container(
+              child: ReUsableCard(
+            siteData: _siteData,
+            siteName: "Im Qays",
+          )),
         ],
       ),
     );

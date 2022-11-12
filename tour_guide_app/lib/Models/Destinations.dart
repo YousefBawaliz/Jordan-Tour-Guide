@@ -34,7 +34,7 @@ class PreviewSite2 {
     'Jarash': SitesPreview(
         previewtitle: "Jarash",
         previewimage:
-            "https://media.tacdn.com/media/attractions-splice-spp-674x446/0b/88/3b/44.jpg"),
+            "http://centers.ju.edu.jo/en/ujlc/Documents/Photos/jarash.jpg"),
     'Aqaba': SitesPreview(
         previewtitle: "Aqaba",
         previewimage:
@@ -65,7 +65,7 @@ class PreviewSite2 {
     'Wadi Mujib': SitesPreview(
         previewtitle: "Wadi Mujib",
         previewimage:
-            "https://click2jordan.com/wp-content/uploads/2020/07/%D9%88%D8%A7%D8%AF%D9%8A-%D8%A7%D9%84%D9%85%D9%88%D8%AC%D8%A8-1.jpg"),
+            "http://wonderstourism.com/wp-content/uploads/2013/05/wadi-al-mujib-canyon-Jordan1.jpg"),
   };
 
   String getSiteTitle({required String siteName}) {

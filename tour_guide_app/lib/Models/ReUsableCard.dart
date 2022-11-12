@@ -3,13 +3,10 @@ import 'package:tour_guide_app/Models/Destinations.dart';
 import '../Screens/ViewDestinationPage.dart';
 
 class ReUsableCard extends StatelessWidget {
-  double hight = 300;
-
   ReUsableCard({
     Key? key,
     required PreviewSite2 siteData,
     required this.siteName,
-    required this.hight,
   })  : _siteData = siteData,
         super(key: key);
 
@@ -19,11 +16,8 @@ class ReUsableCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-          border: Border.all(width: 2, color: Colors.white),
-          borderRadius: BorderRadius.all(Radius.circular(10))),
-      margin: EdgeInsets.all(5),
-      height: hight,
+      margin: EdgeInsets.all(20),
+      height: 200,
       child: GestureDetector(
         onTap: () {
           Navigator.push(
@@ -33,39 +27,37 @@ class ReUsableCard extends StatelessWidget {
             ),
           );
         },
-        child: Stack(
-          children: [
-            Container(
-              height: 200,
-              child: Container(
-                child: Image(
-                  fit: BoxFit.fill,
-                  image: NetworkImage(
-                    _siteData.getSiteImage(siteName: siteName),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(16),
+          child: Stack(
+            children: [
+              Container(
+                width: double.infinity,
+                height: 200,
+                child: Container(
+                  child: Image(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(
+                      _siteData.getSiteImage(siteName: siteName),
+                    ),
                   ),
                 ),
               ),
-            ),
-            Container(
-              child: Text(
-                _siteData.getSiteTitle(siteName: siteName),
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-              ),
-              alignment: Alignment.center,
-            ),
-            Container(
-              alignment: Alignment.bottomCenter,
-              child: ListTile(
-                title: Text(
-                  _siteData.getSiteTitle(siteName: siteName),
+              Container(
+                alignment: Alignment.bottomLeft,
+                child: ListTile(
+                  title: Text(
+                    _siteData.getSiteTitle(siteName: siteName),
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  subtitle: Text(
+                    "Amman",
+                    style: TextStyle(fontSize: 13),
+                  ),
                 ),
-                subtitle: Text(
-                  "اخفض منطقة في العالم , ويعتبر من الاماكن السياحية العلاجية ",
-                  style: TextStyle(fontSize: 13),
-                ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
