@@ -16,7 +16,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
-  final tabs = [Places(), Valleys(), Monuments(), Restaurants()];
+  final tabs = [Places(), Restaurants(), Monuments(), Valleys()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +26,14 @@ class _HomeState extends State<Home> {
           ),
       drawer: MyDrawer(),
       body: tabs[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: Container(
+        // let's make our button nav bar float
+        margin: EdgeInsets.all(15),
+        decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: BottomNavigationBar(
           currentIndex: _currentIndex,
           // iconSize: 30,
 
@@ -35,24 +42,29 @@ class _HomeState extends State<Home> {
               _currentIndex = index;
             });
           },
+          elevation: 0.0,
+          selectedItemColor: Colors.white,
           items: [
             BottomNavigationBarItem(
-                icon: Icon(Icons.place),
-                label: "Places",
-                backgroundColor: Colors.black),
+              backgroundColor: Colors.grey.shade900,
+              icon: Icon(Icons.home),
+              label: "Home",
+            ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.restaurant),
-                label: "Restaurants",
-                backgroundColor: Colors.black),
+              icon: Icon(Icons.restaurant),
+              label: "Restaurants",
+            ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.hotel),
-                label: "Hotels",
-                backgroundColor: Colors.black),
+              icon: Icon(Icons.hotel),
+              label: "Hotels",
+            ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: "Guides",
-                backgroundColor: Colors.black),
-          ]),
+              icon: Icon(Icons.person),
+              label: "Guides",
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
