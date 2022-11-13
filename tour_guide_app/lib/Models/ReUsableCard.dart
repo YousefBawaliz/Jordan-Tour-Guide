@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:tour_guide_app/Models/Destinations.dart';
+import 'package:tour_guide_app/Screens/LoadingScreen.dart';
 import '../Screens/ViewDestinationPage.dart';
 
 class ReUsableCard extends StatelessWidget {
   ReUsableCard({
     Key? key,
-    required PreviewSite2 siteData,
+    required SiteStorage siteData,
     required this.siteName,
   })  : _siteData = siteData,
         super(key: key);
 
-  final PreviewSite2 _siteData;
+  final SiteStorage _siteData;
   final String siteName;
 
   @override
@@ -23,7 +24,7 @@ class ReUsableCard extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => DestinationPage(siteindex: 1),
+              builder: (context) => LoadingScreen(siteName: siteName),
             ),
           );
         },
@@ -38,7 +39,7 @@ class ReUsableCard extends StatelessWidget {
                   child: Image(
                     fit: BoxFit.cover,
                     image: NetworkImage(
-                      _siteData.getSiteImage(siteName: siteName),
+                      _siteData.getSitePreviewImage(siteName: siteName),
                     ),
                   ),
                 ),

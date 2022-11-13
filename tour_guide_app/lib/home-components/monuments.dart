@@ -12,7 +12,7 @@ class Monuments extends StatefulWidget {
 }
 
 class _MonumentsState extends State<Monuments> {
-  PreviewSite2 _siteData = PreviewSite2();
+  SiteStorage _siteData = SiteStorage();
 
   @override
   Widget build(BuildContext context) {

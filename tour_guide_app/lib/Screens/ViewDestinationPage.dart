@@ -2,18 +2,46 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:tour_guide_app/Screens/guide.dart';
+import 'package:tour_guide_app/Services/GetWeather.dart';
+import 'package:tour_guide_app/home-components/places.dart';
 
 import '../Models/Destinations.dart';
+import '../project-components/weatherWidget.dart';
 
 class DestinationPage extends StatefulWidget {
-  final int siteindex;
-  const DestinationPage({super.key, required this.siteindex});
+  final String siteName;
+  final locationWeather;
+  const DestinationPage(
+      {super.key, required this.siteName, required this.locationWeather});
 
   @override
   State<DestinationPage> createState() => _DestinationPageState();
 }
 
 class _DestinationPageState extends State<DestinationPage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    updateUi(widget.locationWeather);
+  }
+
+  WeatherModel weather = WeatherModel();
+  late double temp;
+  late String weatherIcon;
+  void updateUi(dynamic weatherData) {
+    if (weatherData == null) {
+      temp = 0;
+      weatherIcon = '';
+      return;
+    }
+    setState(() {
+      temp = weatherData['main']['temp'];
+      var condition = weatherData['weather'][0]['id'];
+      weatherIcon = weather.getWeatherIcon(condition);
+    });
+  }
+
   List<bool> expanded = [false, false, false, false];
   SiteStorage mysiteStorage = SiteStorage();
   List<String> imageList = [
@@ -21,10 +49,26 @@ class _DestinationPageState extends State<DestinationPage> {
     "https://www.ytravelblog.com/wp-content/uploads/2022/03/the-treasury-and-siq-petra-jordan-.jpg",
     "https://www.backpackadventures.org/wp-content/uploads/2021/02/IMG_2210.jpg"
   ];
+
+  // List imagelist2 = mysiteStorage.getSiteImageList(siteName: widget.siteName);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: InkWell(
+          onTap: () {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Places(),
+                ));
+          },
+          child: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black54,
+          ),
+        ),
         actions: [
           Row(
             children: [
@@ -49,7 +93,8 @@ class _DestinationPageState extends State<DestinationPage> {
                     enlargeCenterPage: true,
                     enableInfiniteScroll: false,
                     autoPlay: true),
-                items: imageList
+                items: mysiteStorage
+                    .getSiteImageList(siteName: widget.siteName)!
                     .map((e) => ClipRRect(
                           borderRadius: BorderRadius.circular(16),
                           child: Stack(
@@ -71,38 +116,22 @@ class _DestinationPageState extends State<DestinationPage> {
               margin: EdgeInsets.only(left: 0, right: 10),
               child: Row(
                 children: [
-                  Container(
-                    height: 200,
-                    width: 300,
+                  Expanded(
+                    flex: 3,
                     child: Container(
-                      margin: EdgeInsets.all(10),
-                      child: Text(mysiteStorage.getSiteDescription(
-                          index: widget.siteindex)),
+                      height: 200,
+                      width: 300,
+                      child: Container(
+                        margin: EdgeInsets.all(10),
+                        child: Text(mysiteStorage.getSiteDescription(
+                            siteName: widget.siteName)),
+                      ),
                     ),
                   ),
-                  Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white)),
-                      height: 140,
-                      width: 100,
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Icon(
-                            Icons.sunny,
-                            size: 70,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "15C",
-                            style: TextStyle(fontSize: 20),
-                          )
-                        ],
-                      ))
+                  Expanded(
+                      child: Weather(
+                          icon: weatherIcon,
+                          tempreure: temp.toInt().toString())),
                 ],
               ),
             ),

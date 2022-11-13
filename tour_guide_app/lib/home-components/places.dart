@@ -12,7 +12,7 @@ class Places extends StatefulWidget {
 }
 
 class _PlacesState extends State<Places> {
-  PreviewSite2 _siteData = PreviewSite2();
+  SiteStorage _siteData = SiteStorage();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +62,7 @@ class _PlacesState extends State<Places> {
           Container(
               child: ReUsableCard(
             siteData: _siteData,
-            siteName: "Patra",
+            siteName: "Petra",
           )),
           Container(
             child: ReUsableCard(
@@ -73,7 +73,7 @@ class _PlacesState extends State<Places> {
           Container(
               child: ReUsableCard(
             siteData: _siteData,
-            siteName: "Ajloan",
+            siteName: "ajloun",
           )),
           Container(
             child: ReUsableCard(

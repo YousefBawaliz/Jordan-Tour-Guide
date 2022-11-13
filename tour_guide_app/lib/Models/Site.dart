@@ -1,16 +1,26 @@
-class sites {
-  String title;
+// class sites {
+//   String title;
+//   String description;
+//   String siteImage;
+//   sites(
+//       {required this.title,
+//       required this.description,
+//       required this.siteImage});
+// }
+
+class Sites {
   String description;
-  String siteImage;
-  sites(
-      {required this.title,
-      required this.description,
-      required this.siteImage});
-}
-
-class SitesPreview {
-  String previewtitle;
+  String title;
   String previewimage;
+  String siteImage;
+  List imageList;
 
-  SitesPreview({required this.previewtitle, required this.previewimage});
+  Sites({
+    required this.title,
+    required this.previewimage,
+    required this.siteImage,
+    required,
+    required this.description,
+    required this.imageList,
+  });
 }
