@@ -42,6 +42,9 @@ class _DestinationPageState extends State<DestinationPage> {
     });
   }
 
+  Color mycolor = Color.fromARGB(255, 245, 245, 244);
+  Color mycolorr = Color.fromARGB(255, 243, 5, 5);
+
   List<bool> expanded = [false, false, false, false];
   SiteStorage mysiteStorage = SiteStorage();
   List<String> imageList = [
@@ -70,15 +73,26 @@ class _DestinationPageState extends State<DestinationPage> {
           ),
         ),
         actions: [
-          Row(
-            children: [
-              Icon(Icons.favorite),
-              SizedBox(
-                width: 20,
-              ),
-              Icon(Icons.map)
-            ],
-          )
+          IconButton(
+            onPressed: () {
+              setState(() {
+                if (mycolor == Color.fromARGB(255, 245, 245, 244)) {
+                  mycolor = Color.fromARGB(255, 243, 5, 5);
+                } else {
+                  mycolor = Color.fromARGB(255, 245, 245, 244);
+                }
+              });
+            },
+            icon: Icon(Icons.favorite),
+            color: mycolor,
+          ),
+          SizedBox(
+            width: 0,
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.map),
+          ),
         ],
 
         // backgroundColor: Color.fromARGB(221, 68, 59, 59),
