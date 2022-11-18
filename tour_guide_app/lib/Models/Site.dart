@@ -14,12 +14,15 @@ class Sites {
   String previewimage;
   String siteImage;
   List imageList;
+  double latitude;
+  double longitude;
 
   Sites({
     required this.title,
     required this.previewimage,
     required this.siteImage,
-    required,
+    this.latitude = 3,
+    this.longitude = 3,
     required this.description,
     required this.imageList,
   });

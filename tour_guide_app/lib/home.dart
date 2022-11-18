@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:tour_guide_app/project-components/drawer.dart';
+import 'package:tour_guide_app/widgets/drawer.dart';
 
 import 'home-components/Valleys.dart';
 import 'home-components/places.dart';

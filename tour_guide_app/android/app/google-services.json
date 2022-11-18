@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1013797512163",
+    "project_id": "jordan-tour-guide",
+    "storage_bucket": "jordan-tour-guide.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013797512163:android:ee320614fc286a1978f6d6",
+        "android_client_info": {
+          "package_name": "com.example.tour_guide_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1013797512163-dhmbrokj0koucccuo7ansg2bf001gems.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxawqgY3YbNP9jnuxYZU5SvmRHUQpFFoE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1013797512163-dhmbrokj0koucccuo7ansg2bf001gems.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

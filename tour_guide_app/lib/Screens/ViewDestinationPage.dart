@@ -6,7 +6,7 @@ import 'package:tour_guide_app/Services/GetWeather.dart';
 import 'package:tour_guide_app/home-components/places.dart';
 
 import '../Models/Destinations.dart';
-import '../project-components/weatherWidget.dart';
+import '../widgets/weatherWidget.dart';
 
 class DestinationPage extends StatefulWidget {
   final String siteName;
@@ -46,12 +46,12 @@ class _DestinationPageState extends State<DestinationPage> {
   Color mycolorr = Color.fromARGB(255, 243, 5, 5);
 
   List<bool> expanded = [false, false, false, false];
-  SiteStorage mysiteStorage = SiteStorage();
-  List<String> imageList = [
-    "https://luggageandlipstick.com/wp-content/uploads/2021/10/0-treasury_Patti-Morrow_luggageandlipstick.com_075328.jpg",
-    "https://www.ytravelblog.com/wp-content/uploads/2022/03/the-treasury-and-siq-petra-jordan-.jpg",
-    "https://www.backpackadventures.org/wp-content/uploads/2021/02/IMG_2210.jpg"
-  ];
+  // SiteStorage mysiteStorage = SiteStorage();
+  // List<String> imageList = [
+  //   "https://luggageandlipstick.com/wp-content/uploads/2021/10/0-treasury_Patti-Morrow_luggageandlipstick.com_075328.jpg",
+  //   "https://www.ytravelblog.com/wp-content/uploads/2022/03/the-treasury-and-siq-petra-jordan-.jpg",
+  //   "https://www.backpackadventures.org/wp-content/uploads/2021/02/IMG_2210.jpg"
+  // ];
 
   // List imagelist2 = mysiteStorage.getSiteImageList(siteName: widget.siteName);
 

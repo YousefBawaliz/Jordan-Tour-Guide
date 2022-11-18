@@ -1,18 +1,42 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:tour_guide_app/Models/Destinations.dart';
 import 'package:tour_guide_app/Screens/LoadingScreen.dart';
 import '../Screens/ViewDestinationPage.dart';
 
-class ReUsableCard extends StatelessWidget {
-  ReUsableCard({
+class ReUsableCard2 extends StatefulWidget {
+  ReUsableCard2({
     Key? key,
-    required SiteStorage siteData,
+    required this.snap,
     required this.siteName,
-  })  : _siteData = siteData,
-        super(key: key);
+  }) : super(key: key);
 
-  final SiteStorage _siteData;
+  final snap;
   final String siteName;
+
+  @override
+  State<ReUsableCard2> createState() => _ReUsableCard2State();
+}
+
+class _ReUsableCard2State extends State<ReUsableCard2> {
+  String governate = '';
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   getGovernate();
+  // }
+
+  // void getGovernate() async {
+  //   DocumentSnapshot snap = await FirebaseFirestore.instance
+  //       .collection('sites')
+  //       .doc(' ${widget.snap['title']}')
+  //       .get();
+
+  //   setState(() {
+  //     governate = (snap.data() as Map<String, dynamic>)['governorates'];
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +48,9 @@ class ReUsableCard extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => LoadingScreen(siteName: siteName),
+              builder: (context) => LoadingScreen(
+                  siteName: ' ${widget.snap['title']}',
+                  governorate: ' ${widget.snap['governorates']}'),
             ),
           );
         },
@@ -39,7 +65,7 @@ class ReUsableCard extends StatelessWidget {
                   child: Image(
                     fit: BoxFit.cover,
                     image: NetworkImage(
-                      _siteData.getSitePreviewImage(siteName: siteName),
+                      widget.snap['previewimage'].toString(),
                     ),
                   ),
                 ),
@@ -48,11 +74,12 @@ class ReUsableCard extends StatelessWidget {
                 alignment: Alignment.bottomLeft,
                 child: ListTile(
                   title: Text(
-                    _siteData.getSiteTitle(siteName: siteName),
+                    ' ${widget.snap['title']}',
+                    // _siteData.getSiteTitle(siteName: siteName),
                     style: TextStyle(fontSize: 20),
                   ),
                   subtitle: Text(
-                    "Amman",
+                    ' ${widget.snap['governorates']}',
                     style: TextStyle(fontSize: 13),
                   ),
                 ),

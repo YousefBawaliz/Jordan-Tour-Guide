@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:tour_guide_app/Screens/signup_screen.dart';
 
-import '../project-components/customized_button.dart';
+import '../widgets/customized_button.dart';
 import 'login_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -27,7 +27,7 @@ class WelcomeScreen extends StatelessWidget {
                 textColor: Colors.white,
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const LoginScreen()));
+                      MaterialPageRoute(builder: (_) => const LogInScreen()));
                 },
               ),
               CustomizedButton(

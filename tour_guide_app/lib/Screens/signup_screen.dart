@@ -1,190 +1,217 @@
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-
-import '../project-components/customized_button.dart';
-import '../project-components/customized_textfield.dart';
-import 'login_screen.dart';
+import 'package:tour_guide_app/Firebase_Services/firebase_auth.dart';
+import 'package:tour_guide_app/Screens/login_screen.dart';
+import 'package:tour_guide_app/home-components/places.dart';
+import 'package:tour_guide_app/utils/colors.dart';
+import 'package:tour_guide_app/utils/utils.dart';
+import 'package:tour_guide_app/widgets/textfieldinput.dart';
 
 class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+  const SignUpScreen({super.key});
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
+  TextEditingController _email = TextEditingController();
+  TextEditingController _password = TextEditingController();
+  TextEditingController _username = TextEditingController();
+  Uint8List? _image;
+  bool _isLoading = false;
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _email.dispose();
+    _password.dispose();
+    _username.dispose();
+  }
+
+  // void selectImage() async {
+  //   Uint8List im = await pickImage(ImageSource.gallery);
+  //   setState(() {
+  //     _image = im;
+  //   });
+  // }
+
+  void signUpUser() async {
+    setState(() {
+      _isLoading = true;
+    });
+    String res = await AuthMethods().signUpUser(
+      email: _email.text,
+      password: _password.text,
+      username: _username.text,
+    );
+    setState(() {
+      _isLoading = false;
+    });
+    if (res != 'success') {
+      showSnackBar(context, res);
+    } else {
+      // Navigator.of(context).pushReplacement(
+      //   MaterialPageRoute(
+      //     builder: (context) => const ResponsiveLayout(
+      //       mobileScreenLayout: MobileScreenLayout(),
+      //       webScreenLayout: WebScreenLayout(),
+      //     ),
+      //   ),
+      // );
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const Places()),
+      );
+    }
+  }
+
+  void NavigateToLogIn() {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => LogInScreen(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-          body: SingleChildScrollView(
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: SafeArea(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 32),
           width: double.infinity,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  height: 50,
-                  width: 50,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black, width: 1),
-                    borderRadius: BorderRadius.circular(10),
+              Flexible(
+                child: Container(),
+                flex: 2,
+              ),
+              //image
+              Container(
+                height: 84,
+                width: 100,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: AssetImage('assets/petra.png'),
                   ),
-                  child: IconButton(
-                      icon: const Icon(Icons.arrow_back_ios_sharp),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      }),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Text("Hello!  Register to get \nStarted",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    )),
+              //spacing
+              SizedBox(
+                height: 24,
               ),
-              CustomizedTextfield(
-                myController: _usernameController,
-                hintText: "Username",
-                isPassword: false,
+
+              // Stack(
+              //   children: const [
+              //     CircleAvatar(
+              //       radius: 64,
+              //       backgroundImage:
+              //           NetworkImage('https://i.stack.imgur.com/l60Hf.png'),
+              //       backgroundColor: Colors.red,
+              //     ),
+              //   ],
+              // ),
+              //spacing
+              SizedBox(
+                height: 24,
               ),
-              CustomizedTextfield(
-                myController: _emailController,
-                hintText: "Email",
-                isPassword: false,
+              //textfield for username
+              TextFieldInput(
+                  textEditingController: _username,
+                  hintText: "enter your username",
+                  textInputType: TextInputType.text),
+              //spacing
+              SizedBox(
+                height: 24,
               ),
-              CustomizedTextfield(
-                myController: _passwordController,
-                hintText: "Password",
-                isPassword: true,
+
+              //textField For email
+              TextFieldInput(
+                  textEditingController: _email,
+                  hintText: "enter your email",
+                  textInputType: TextInputType.emailAddress),
+              //spacing
+              SizedBox(
+                height: 24,
               ),
-              CustomizedTextfield(
-                myController: _confirmPasswordController,
-                hintText: "Confirm Password",
-                isPassword: true,
+              //textField For password
+              TextFieldInput(
+                textEditingController: _password,
+                hintText: "enter your password",
+                textInputType: TextInputType.text,
+                isPass: true,
               ),
-              CustomizedButton(
-                buttonText: "Register",
-                buttonColor: Colors.black,
-                textColor: Colors.white,
-                onPressed: () {}
+              //spacing
+              SizedBox(
+                height: 24,
               ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  children: [
-                    Container(
-                      height: 1,
-                      width: MediaQuery.of(context).size.height * 0.15,
-                      color: Colors.grey,
+
+              //spacing
+              SizedBox(
+                height: 24,
+              ),
+              //sign up button
+              InkWell(
+                onTap: signUpUser,
+                child: Container(
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  decoration: const ShapeDecoration(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(4)),
                     ),
-                    const Text("Or Register with"),
-                    Container(
-                      height: 1,
-                      width: MediaQuery.of(context).size.height * 0.16,
-                      color: Colors.grey,
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                        height: 50,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black, width: 1),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: IconButton(
-                          icon: const Icon(
-                            FontAwesomeIcons.facebookF,
-                            color: Colors.blue,
+                    color: blueColor,
+                  ),
+                  child: _isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                            color: primaryColor,
                           ),
-                          onPressed: () {},
-                        )),
-                    Container(
-                      height: 50,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black, width: 1),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: IconButton(
-                        icon: const Icon(
-                          FontAwesomeIcons.google,
-                          // color: Colors.blue,
-                        ),
-                        onPressed: () {},
-                      ),
-                    ),
-                    Container(
-                        height: 50,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black, width: 1),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: IconButton(
-                          icon: const Icon(
-                            FontAwesomeIcons.apple,
-                            // color: Colors.blue,
-                          ),
-                          onPressed: () {},
-                        ))
-                  ],
+                        )
+                      : const Text("Sign up"),
                 ),
               ),
-              const SizedBox(
-                height: 40,
+              //spacing
+              SizedBox(
+                height: 24,
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(48, 8, 8, 8.0),
-                child: Row(
-                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    const Text("Already have an account?",
+              Flexible(
+                child: Container(),
+                flex: 2,
+              ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    child: const Text(
+                      'already have an account ?',
+                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                  ),
+                  GestureDetector(
+                    onTap: NavigateToLogIn,
+                    child: Container(
+                      child: const Text(
+                        ' Log in.',
                         style: TextStyle(
-                          color: Color(0xff1E232C),
-                          fontSize: 15,
-                        )),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => const LoginScreen()));
-                      },
-                      child: const Text("  Login Now",
-                          style: TextStyle(
-                            color: Color(0xff35C2C1),
-                            fontSize: 15,
-                          )),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 8),
                     ),
-                  ],
-                ),
-              )
+                  ),
+                ],
+              ),
             ],
           ),
         ),
-      )),
+      ),
     );
   }
 }

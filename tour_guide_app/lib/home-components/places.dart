@@ -2,7 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 
 import 'package:tour_guide_app/Models/Destinations.dart';
-import '../Models/ReUsableCard.dart';
+import '../widgets/ReUsableCard.dart';
 
 class Places extends StatefulWidget {
   const Places({super.key});
@@ -20,9 +20,11 @@ class _PlacesState extends State<Places> {
         children: [
           Container(
             width: 20,
-            margin: EdgeInsets.only(bottom: 10, top: 20, left: 30, right: 150),
+            margin: const EdgeInsets.only(
+                bottom: 10, top: 20, left: 30, right: 150),
+            alignment: Alignment.center,
             child: DefaultTextStyle(
-                style: TextStyle(
+                style: const TextStyle(
                     fontStyle: FontStyle.italic,
                     color: Colors.white,
                     fontSize: 30,
@@ -33,15 +35,14 @@ class _PlacesState extends State<Places> {
                         speed: Duration(milliseconds: 100)),
                   ],
                 )),
-            alignment: Alignment.center,
           ),
           Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(50))),
-              margin: EdgeInsets.all(20),
+              margin: const EdgeInsets.all(20),
               child: TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintStyle: TextStyle(color: Colors.black),
                   hintText: "Search for place",
                   suffixIcon: Icon(
@@ -53,50 +54,38 @@ class _PlacesState extends State<Places> {
                       borderRadius: BorderRadius.all(Radius.circular(25.0))),
                 ),
               )),
-          Container(
-            child: ReUsableCard(
-              siteData: _siteData,
-              siteName: "Dead sea",
-            ),
+          ReUsableCard(
+            siteData: _siteData,
+            siteName: "Dead sea",
           ),
-          Container(
-              child: ReUsableCard(
+          ReUsableCard(
             siteData: _siteData,
             siteName: "Petra",
-          )),
-          Container(
-            child: ReUsableCard(
-              siteData: _siteData,
-              siteName: "Wadi Mujib",
-            ),
           ),
-          Container(
-              child: ReUsableCard(
+          ReUsableCard(
+            siteData: _siteData,
+            siteName: "Wadi Mujib",
+          ),
+          ReUsableCard(
             siteData: _siteData,
             siteName: "ajloun",
-          )),
-          Container(
-            child: ReUsableCard(
-              siteData: _siteData,
-              siteName: "Dead sea",
-            ),
           ),
-          Container(
-              child: ReUsableCard(
+          ReUsableCard(
+            siteData: _siteData,
+            siteName: "Dead sea",
+          ),
+          ReUsableCard(
             siteData: _siteData,
             siteName: "Jarash",
-          )),
-          Container(
-            child: ReUsableCard(
-              siteData: _siteData,
-              siteName: "wadi rum",
-            ),
           ),
-          Container(
-              child: ReUsableCard(
+          ReUsableCard(
+            siteData: _siteData,
+            siteName: "wadi rum",
+          ),
+          ReUsableCard(
             siteData: _siteData,
             siteName: "Im Qays",
-          )),
+          ),
         ],
       ),
     );

@@ -1,34 +1,5 @@
 import 'Site.dart';
 
-// class SiteStorage {
-//   final List<sites> _siteData = [
-//     sites(
-//         siteImage:
-//             "https://upload.travelawaits.com/ta/uploads/2021/04/6774bc9a0dad571855fb28138b8a46774bc.jpg",
-//         title: "Petra",
-//         description:
-//             " An inscription written by “Abdomanchos”, indicates that the tomb was to be used for himself and his family, probably in the reign of Malichus II (40- 70 AD)."),
-//     sites(
-//         siteImage:
-//             "https://dannythedigger.com/wp-content/uploads/jerash-tour-scaled-e1619676987568.jpg",
-//         title: "jarash",
-//         description:
-//             " Jerash is a city in Jordan, north of the capital Amman. Inhabited since the Bronze Age, it’s known for the ruins of the walled Greco-Roman settlement of Gerasa just outside the modern city. These include the 2nd-century Hadrian’s Arch, the Corinthian columns of the Temple of Artemis and the huge Forum’s oval colonnade. The Jerash Archaeological Museum displays artifacts excavated from the site"),
-//   ];
-
-//   String getSiteTitle({required int index}) {
-//     return _siteData[index].title;
-//   }
-
-//   String getSiteImage({required int index}) {
-//     return _siteData[index].siteImage;
-//   }
-
-//   String getSiteDescription({required int index}) {
-//     return _siteData[index].description;
-//   }
-// }
-
 class SiteStorage {
   final Map<String, Sites> _mySitePreviewData = {
     'Jarash': Sites(
@@ -110,18 +81,21 @@ class SiteStorage {
         previewimage:
             "https://modo3.com/thumbs/fit630x300/197704/1536241454/%D9%85%D8%AF%D9%8A%D9%86%D8%A9_%D8%A3%D9%85_%D9%82%D9%8A%D8%B3.jpg"),
     'Petra': Sites(
-        imageList: [
-          "https://luggageandlipstick.com/wp-content/uploads/2021/10/0-treasury_Patti-Morrow_luggageandlipstick.com_075328.jpg",
-          "https://www.ytravelblog.com/wp-content/uploads/2022/03/the-treasury-and-siq-petra-jordan-.jpg",
-          "https://www.backpackadventures.org/wp-content/uploads/2021/02/IMG_2210.jpg"
-        ],
-        siteImage:
-            "https://cdn1-m.alittihad.ae/store/archive/image/2020/12/7/c6df0a0a-31d1-4b32-a160-fd40bb49a762.png?width=1300",
-        description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-        title: "Petra",
-        previewimage:
-            "https://cdn1-m.alittihad.ae/store/archive/image/2020/12/7/c6df0a0a-31d1-4b32-a160-fd40bb49a762.png?width=1300"),
+      imageList: [
+        "https://luggageandlipstick.com/wp-content/uploads/2021/10/0-treasury_Patti-Morrow_luggageandlipstick.com_075328.jpg",
+        "https://www.ytravelblog.com/wp-content/uploads/2022/03/the-treasury-and-siq-petra-jordan-.jpg",
+        "https://www.backpackadventures.org/wp-content/uploads/2021/02/IMG_2210.jpg"
+      ],
+      siteImage:
+          "https://cdn1-m.alittihad.ae/store/archive/image/2020/12/7/c6df0a0a-31d1-4b32-a160-fd40bb49a762.png?width=1300",
+      description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+      title: "Petra",
+      previewimage:
+          "https://cdn1-m.alittihad.ae/store/archive/image/2020/12/7/c6df0a0a-31d1-4b32-a160-fd40bb49a762.png?width=1300",
+      latitude: 30.3285,
+      longitude: 35.4444,
+    ),
     'Maeein Falls': Sites(
         imageList: [
           "https://luggageandlipstick.com/wp-content/uploads/2021/10/0-treasury_Patti-Morrow_luggageandlipstick.com_075328.jpg",
@@ -166,5 +140,13 @@ class SiteStorage {
 
   List? getSiteImageList({required String siteName}) {
     return _mySitePreviewData[siteName]!.imageList;
+  }
+
+  double getLocationLat({required String siteName}) {
+    return _mySitePreviewData[siteName]!.latitude;
+  }
+
+  double getLocationLon({required String siteName}) {
+    return _mySitePreviewData[siteName]!.latitude;
   }
 }

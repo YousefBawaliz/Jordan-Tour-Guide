@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:tour_guide_app/Models/Destinations.dart';
 
-import '../Models/ReUsableCard.dart';
+import '../widgets/ReUsableCard.dart';
 
 class Monuments extends StatefulWidget {
   const Monuments({super.key});
