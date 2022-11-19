@@ -1,12 +1,20 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
+import 'package:tour_guide_app/Firebase_Services/firestore_methods.dart';
+import 'package:tour_guide_app/Models/user.dart';
+import 'package:tour_guide_app/Provider/user_provider.dart';
+import 'package:tour_guide_app/Screens/MapsLoadingScreen.dart';
 import 'package:tour_guide_app/Screens/guide.dart';
 import 'package:tour_guide_app/Services/GetWeather.dart';
 import 'package:tour_guide_app/home-components/places.dart';
-
+import 'package:tour_guide_app/home-components/places2.dart';
+import 'package:tour_guide_app/utils/utils.dart';
 import '../Models/Destinations.dart';
-import '../project-components/weatherWidget.dart';
+import '../widgets/weatherWidget.dart';
+import 'package:tour_guide_app/Models/user.dart ' as model;
 
 class DestinationPage extends StatefulWidget {
   final String siteName;
@@ -24,6 +32,21 @@ class _DestinationPageState extends State<DestinationPage> {
     // TODO: implement initState
     super.initState();
     updateUi(widget.locationWeather);
+    getSiteDescription();
+    getSiteImageList();
+    print(imageList);
+    getUsername();
+  }
+
+  addFavourite() async {
+    try {
+      await FireStoreMethods().addFavourite('${widget.siteName}'.trim());
+    } catch (err) {
+      showSnackBar(
+        context,
+        err.toString(),
+      );
+    }
   }
 
   WeatherModel weather = WeatherModel();
@@ -46,25 +69,58 @@ class _DestinationPageState extends State<DestinationPage> {
   Color mycolorr = Color.fromARGB(255, 243, 5, 5);
 
   List<bool> expanded = [false, false, false, false];
-  SiteStorage mysiteStorage = SiteStorage();
-  List<String> imageList = [
-    "https://luggageandlipstick.com/wp-content/uploads/2021/10/0-treasury_Patti-Morrow_luggageandlipstick.com_075328.jpg",
-    "https://www.ytravelblog.com/wp-content/uploads/2022/03/the-treasury-and-siq-petra-jordan-.jpg",
-    "https://www.backpackadventures.org/wp-content/uploads/2021/02/IMG_2210.jpg"
-  ];
 
-  // List imagelist2 = mysiteStorage.getSiteImageList(siteName: widget.siteName);
+  getSiteDescription() async {
+    DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection('sites')
+        .doc('${widget.siteName}'.trim())
+        .get();
 
+    setState(() {
+      description = (snap.data() as Map<String, dynamic>)['description'];
+    });
+    print(snap.data());
+  }
+
+  getSiteImageList() async {
+    DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection('sites')
+        .doc('${widget.siteName}'.trim())
+        .get();
+
+    setState(() {
+      imageList = (snap.data() as Map<String, dynamic>)['imageList'];
+    });
+    // print(snap.data());
+  }
+
+  getUsername() async {
+    DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
+
+    setState(() {
+      username = (snap.data() as Map<String, dynamic>)['username'];
+    });
+    print(snap.data());
+  }
+
+  String description = '';
+  List imageList = [];
+  String username = '';
   @override
   Widget build(BuildContext context) {
+    // User userProvider = Provider.of<UserProvider>(context).getUser;
     return Scaffold(
       appBar: AppBar(
+        title: Text(''),
         leading: InkWell(
           onTap: () {
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Places(),
+                  builder: (context) => Places2(),
                 ));
           },
           child: Icon(
@@ -82,6 +138,7 @@ class _DestinationPageState extends State<DestinationPage> {
                   mycolor = Color.fromARGB(255, 245, 245, 244);
                 }
               });
+              addFavourite();
             },
             icon: Icon(Icons.favorite),
             color: mycolor,
@@ -90,7 +147,14 @@ class _DestinationPageState extends State<DestinationPage> {
             width: 0,
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MapsLoadingScreen(
+                        siteName: '${widget.siteName}'.trim()),
+                  ));
+            },
             icon: Icon(Icons.map),
           ),
         ],
@@ -107,8 +171,7 @@ class _DestinationPageState extends State<DestinationPage> {
                     enlargeCenterPage: true,
                     enableInfiniteScroll: false,
                     autoPlay: true),
-                items: mysiteStorage
-                    .getSiteImageList(siteName: widget.siteName)!
+                items: imageList
                     .map((e) => ClipRRect(
                           borderRadius: BorderRadius.circular(16),
                           child: Stack(
@@ -137,8 +200,9 @@ class _DestinationPageState extends State<DestinationPage> {
                       width: 300,
                       child: Container(
                         margin: EdgeInsets.all(10),
-                        child: Text(mysiteStorage.getSiteDescription(
-                            siteName: widget.siteName)),
+                        // child: Text(mysiteStorage.getSiteDescription(
+                        //     siteName: widget.siteName)),
+                        child: Text('$description'),
                       ),
                     ),
                   ),
@@ -164,8 +228,7 @@ class _DestinationPageState extends State<DestinationPage> {
                             headerBuilder: (context, isExpanded) {
                               return Text("What to see");
                             },
-                            body: Text(
-                                " An inscription written by “Abdomanchos”, indicates that the tomb was to be used for himself and his family, probably in the reign of Malichus II (40- 70 AD)."),
+                            body: Text(description),
                             isExpanded: expanded[0],
                           ),
                           ExpansionPanel(

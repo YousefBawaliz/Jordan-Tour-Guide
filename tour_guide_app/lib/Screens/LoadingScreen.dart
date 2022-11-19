@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tour_guide_app/provider/user_provider.dart';
 import 'ViewDestinationPage.dart';
 import 'package:tour_guide_app/Services/getWeather.dart';
 import 'package:tour_guide_app/Services/getCurrentLocation.dart';
@@ -7,8 +9,10 @@ class LoadingScreen extends StatefulWidget {
   LoadingScreen({
     super.key,
     required this.siteName,
+    required this.governorate,
   });
   String siteName;
+  String governorate;
   @override
   State<LoadingScreen> createState() => _LoadingScreenState();
 }
@@ -22,8 +26,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   void getDestinationWeather() async {
     WeatherModel weatherModel = WeatherModel();
-    var weatherData = await weatherModel.getCityWeather(widget.siteName);
+    // var weatherData = await weatherModel.getCityWeather(widget.siteName);
+    var weatherData = await weatherModel.getCityWeather(widget.governorate);
     print(weatherData);
+    print(widget.siteName);
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(

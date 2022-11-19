@@ -1,137 +1,171 @@
 import 'package:flutter/material.dart';
-import 'package:tour_guide_app/Screens/forgot_passwor.dart';
+import 'package:tour_guide_app/Firebase_Services/firebase_auth.dart';
+import 'package:tour_guide_app/Screens/signup_screen.dart';
+import 'package:tour_guide_app/home-components/places.dart';
+import 'package:tour_guide_app/home-components/places2.dart';
+import 'package:tour_guide_app/utils/colors.dart';
+import 'package:tour_guide_app/utils/utils.dart';
+import 'package:tour_guide_app/widgets/textfieldinput.dart';
 
-class MyLogin extends StatefulWidget {
-  const MyLogin({Key? key}) : super(key: key);
+class LogInScreen extends StatefulWidget {
+  const LogInScreen({super.key});
 
   @override
-  _MyLoginState createState() => _MyLoginState();
+  State<LogInScreen> createState() => _LogInScreenState();
 }
 
-class _MyLoginState extends State<MyLogin> {
+class _LogInScreenState extends State<LogInScreen> {
+  TextEditingController _email = TextEditingController();
+  TextEditingController _password = TextEditingController();
+  bool _isLoading = false;
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _email.dispose();
+    _password.dispose();
+  }
+
+  void logInUser() async {
+    setState(() {
+      _isLoading = true;
+    });
+    String res = await AuthMethods()
+        .logInUser(email: _email.text, password: _password.text);
+
+    if (res == "success") {
+      // Navigator.of(context).pushReplacement(
+      //   MaterialPageRoute(
+      //     builder: (context) => const ResponsiveLayout(
+      //       mobileScreenLayout: MobileScreenLayout(),
+      //       webScreenLayout: WebScreenLayout(),
+      //     ),
+      //   ),
+      // );
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const Places2()),
+      );
+    } else {
+      showSnackBar(context, res);
+    }
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
+  void NavigateToSignUp() {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => SignUpScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage('assets/login.png'), fit: BoxFit.cover),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Stack(
-          children: [
-            Container(),
-            Container(
-              padding: EdgeInsets.only(left: 35, top: 130),
-              child: Text(
-                'Welcome\nBack',
-                style: TextStyle(color: Colors.white, fontSize: 33),
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 32),
+          width: double.infinity,
+          child: Column(
+            children: [
+              Flexible(
+                child: Container(),
+                flex: 2,
               ),
-            ),
-            SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.5),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(left: 35, right: 35),
-                      child: Column(
-                        children: [
-                          TextField(
-                            style: TextStyle(color: Colors.white),
-                            decoration: InputDecoration(
-                                fillColor: Colors.grey,
-                                filled: true,
-                                hintText: "Email",
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                )),
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          TextField(
-                            style: TextStyle(color: Colors.white),
-                            obscureText: true,
-                            decoration: InputDecoration(
-                                fillColor: Colors.grey,
-                                filled: true,
-                                hintText: "Password",
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                )),
-                          ),
-                          SizedBox(
-                            height: 40,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Sign in',
-                                style: TextStyle(
-                                    fontSize: 27, fontWeight: FontWeight.w700),
-                              ),
-                              CircleAvatar(
-                                radius: 30,
-                                backgroundColor: Color(0xff4c505b),
-                                child: IconButton(
-                                    color: Colors.white,
-                                    onPressed: () {},
-                                    icon: Icon(
-                                      Icons.arrow_forward,
-                                    )),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 40,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pushNamed(context, 'register');
-                                },
-                                child: Text(
-                                  'Sign Up',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      decoration: TextDecoration.underline,
-                                      color: Color(0xff4c505b),
-                                      fontSize: 18),
-                                ),
-                                style: ButtonStyle(),
-                              ),
-                              TextButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const ForgotPassword()));
-                                  },
-                                  child: Text(
-                                    'Forgot Password',
-                                    style: TextStyle(
-                                      decoration: TextDecoration.underline,
-                                      color: Color(0xff4c505b),
-                                      fontSize: 18,
-                                    ),
-                                  )),
-                            ],
-                          )
-                        ],
-                      ),
-                    )
-                  ],
+              //image
+              Container(
+                height: 84,
+                width: 100,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: AssetImage('assets/petra.png'),
+                  ),
                 ),
               ),
-            ),
-          ],
+              //spacing
+              SizedBox(
+                height: 64,
+              ),
+              //textField For email
+              TextFieldInput(
+                  textEditingController: _email,
+                  hintText: "enter your email",
+                  textInputType: TextInputType.emailAddress),
+              //spacing
+              SizedBox(
+                height: 24,
+              ),
+              //textField For password
+              TextFieldInput(
+                textEditingController: _password,
+                hintText: "enter your password",
+                textInputType: TextInputType.text,
+                isPass: true,
+              ),
+              //spacing
+              SizedBox(
+                height: 24,
+              ),
+              //log in button
+              InkWell(
+                onTap: logInUser,
+                child: Container(
+                  child: _isLoading
+                      ? Center(
+                          child: CircularProgressIndicator(
+                            color: primaryColor,
+                          ),
+                        )
+                      : const Text("Log in"),
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  decoration: const ShapeDecoration(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(4)),
+                    ),
+                    color: blueColor,
+                  ),
+                ),
+              ),
+              //spacing
+              SizedBox(
+                height: 24,
+              ),
+              Flexible(
+                child: Container(),
+                flex: 2,
+              ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    child: const Text(
+                      'Dont have an account?',
+                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                  ),
+                  GestureDetector(
+                    onTap: NavigateToSignUp,
+                    child: Container(
+                      child: const Text(
+                        ' Signup.',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

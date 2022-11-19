@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -8,8 +9,12 @@ class GoogleMapNavigator extends StatefulWidget {
   final double? CurrentLocationLat;
   final double? CurrentLocationLon;
   final String siteName;
+  final double? sitelat;
+  final double? sitelon;
   GoogleMapNavigator({
     Key? key,
+    required this.sitelat,
+    required this.sitelon,
     required this.CurrentLocationLat,
     required this.CurrentLocationLon,
     required this.siteName,
@@ -30,7 +35,7 @@ class GoogleMapNavigatorState extends State<GoogleMapNavigator> {
 
   late LatLng sourceLocation =
       LatLng(widget.CurrentLocationLat!, widget.CurrentLocationLon!);
-  LatLng destination = LatLng(37.33429383, -122.06600055);
+  late LatLng destination = LatLng(widget.sitelat!, widget.sitelon!);
 
   List<LatLng> polylineCoordinates = [];
 
@@ -54,16 +59,48 @@ class GoogleMapNavigatorState extends State<GoogleMapNavigator> {
 
   @override
   void initState() {
+    print('site lat is ${widget.sitelat}');
+    print('site lon is ${widget.sitelon}');
+    print(widget.CurrentLocationLat);
+    print(widget.CurrentLocationLon);
+    // getsiteLng();
+    // getStielat();
     getpolypoints();
     super.initState();
   }
 
+  // getsiteLng() async {
+  //   DocumentSnapshot snap = await FirebaseFirestore.instance
+  //       .collection('sites')
+  //       .doc('${widget.siteName}'.trim())
+  //       .get();
+
+  //   setState(() {
+  //     sitelat = (snap.data() as Map<String, dynamic>)['latitude'];
+  //   });
+  //   print('sitelat is $sitelat');
+  // }
+
+  // getStielat() async {
+  //   DocumentSnapshot snap = await FirebaseFirestore.instance
+  //       .collection('sites')
+  //       .doc('${widget.siteName}'.trim())
+  //       .get();
+
+  //   setState(() {
+  //     sitelon = (snap.data() as Map<String, dynamic>)['longitude'];
+  //   });
+  //   print('sitelon is $sitelon');
+  // }
+
+  // double sitelat = 1;
+  // double sitelon = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Track order",
+        title: Text(
+          '${widget.siteName}'.trim(),
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
       ),

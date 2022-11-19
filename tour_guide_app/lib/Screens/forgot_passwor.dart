@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../project-components/customized_button.dart';
-import '../project-components/customized_textfield.dart';
-
+import '../widgets/customized_button.dart';
+import '../widgets/customized_textfield.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({Key? key}) : super(key: key);
@@ -18,7 +17,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      body: SizedBox (
+      body: SizedBox(
         height: MediaQuery.of(context).size.height,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,7 +48,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   )),
             ),
             const Padding(
-              padding:  EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.0),
               child: Text(
                   "Dont worry it occurs to us all. We will send you a link to reset your password.",
                   style: TextStyle(
