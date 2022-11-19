@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:tour_guide_app/Firebase_Services/firebase_auth.dart';
@@ -12,6 +11,9 @@ import 'package:tour_guide_app/widgets/textfieldinput.dart';
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
 
 class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController _email = TextEditingController();
