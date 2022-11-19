@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tour_guide_app/Firebase_Services/firebase_auth.dart';
 import 'package:tour_guide_app/Screens/signup_screen.dart';
 import 'package:tour_guide_app/home-components/places.dart';
+import 'package:tour_guide_app/home-components/places2.dart';
 import 'package:tour_guide_app/utils/colors.dart';
 import 'package:tour_guide_app/utils/utils.dart';
 import 'package:tour_guide_app/widgets/textfieldinput.dart';
@@ -43,7 +44,7 @@ class _LogInScreenState extends State<LogInScreen> {
       //   ),
       // );
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const Places()),
+        MaterialPageRoute(builder: (context) => const Places2()),
       );
     } else {
       showSnackBar(context, res);

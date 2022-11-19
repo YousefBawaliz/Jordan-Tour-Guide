@@ -3,6 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tour_guide_app/Provider/user_provider.dart';
+import 'package:tour_guide_app/Screens/add_comment_screen.dart';
+import 'package:tour_guide_app/Screens/favourite_screen.dart';
 import 'package:tour_guide_app/Screens/login_screen.dart';
 import 'package:tour_guide_app/firebase_options.dart';
 import 'package:tour_guide_app/home-components/places.dart';
@@ -29,46 +31,39 @@ class MyApp extends StatelessWidget {
     //   // home: MapsLoadingScreen(siteName: 'Petra'),
 
     // );
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => UserProvider(),
-        )
-      ],
-      child: MaterialApp(
-        title: 'Instagram clone',
-        theme: ThemeData.dark().copyWith(),
-        // home: ResponsiveLayout(
-        //     mobileScreenLayout: MobileScreenLayout(),
-        //     webScreenLayout: WebScreenLayout()),
-        home: StreamBuilder(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.active) {
-              // Checking if the snapshot has any data or not
-              if (snapshot.hasData) {
-                // if snapshot has data which means user is logged in then we check the width of screen and accordingly display the screen layout
-                // return const ResponsiveLayout(
-                //   mobileScreenLayout: MobileScreenLayout(),
-                //   webScreenLayout: WebScreenLayout(),
-                return const Places2();
-              } else if (snapshot.hasError) {
-                return Center(
-                  child: Text('${snapshot.error}'),
-                );
-              }
-            }
-
-            // means connection to future hasnt been made yet
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
+    return MaterialApp(
+      title: 'Instagram clone',
+      theme: ThemeData.dark().copyWith(),
+      // home: ResponsiveLayout(
+      //     mobileScreenLayout: MobileScreenLayout(),
+      //     webScreenLayout: WebScreenLayout()),
+      home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.active) {
+            // Checking if the snapshot has any data or not
+            if (snapshot.hasData) {
+              // if snapshot has data which means user is logged in then we check the width of screen and accordingly display the screen layout
+              // return const ResponsiveLayout(
+              //   mobileScreenLayout: MobileScreenLayout(),
+              //   webScreenLayout: WebScreenLayout(),
+              return const Places2();
+            } else if (snapshot.hasError) {
+              return Center(
+                child: Text('${snapshot.error}'),
               );
             }
+          }
 
-            return const LogInScreen();
-          },
-        ),
+          // means connection to future hasnt been made yet
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+
+          return const LogInScreen();
+        },
       ),
     );
   }

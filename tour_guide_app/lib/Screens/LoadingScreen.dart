@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tour_guide_app/provider/user_provider.dart';
 import 'ViewDestinationPage.dart';
 import 'package:tour_guide_app/Services/getWeather.dart';
 import 'package:tour_guide_app/Services/getCurrentLocation.dart';

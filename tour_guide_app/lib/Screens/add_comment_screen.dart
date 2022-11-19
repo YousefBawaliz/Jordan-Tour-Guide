@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tour_guide_app/Firebase_Services/firestore_methods.dart';
@@ -23,6 +25,13 @@ class _AddPostScreenState extends State<AddPostScreen> {
     _commentText.dispose();
   }
 
+  @override
+  void initState() {
+    super.initState();
+    getUsername();
+    getUserID();
+  }
+
   void postComment(String uid, String username) async {
     setState(() {
       isLoading = true;
@@ -30,7 +39,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
     // start the loading
     try {
       // upload to storage and db
-      String res = await FireStoreMethods().uploadPost(
+      String res = await FireStoreMethods().uploadComment(
         _commentText.text,
         uid,
         username,
@@ -58,10 +67,36 @@ class _AddPostScreenState extends State<AddPostScreen> {
     }
   }
 
+  getUsername() async {
+    DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
+
+    setState(() {
+      username = (snap.data() as Map<String, dynamic>)['username'];
+    });
+    print(snap.data());
+  }
+
+  getUserID() async {
+    DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
+
+    setState(() {
+      userId = (snap.data() as Map<String, dynamic>)['uid'];
+    });
+    print(snap.data());
+  }
+
+  String username = '';
+  String userId = '';
   @override
   Widget build(BuildContext context) {
     //get user info
-    final UserProvider userProvider = Provider.of<UserProvider>(context);
+    // final UserProvider userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: mobileBackgroundColor,
@@ -70,17 +105,17 @@ class _AddPostScreenState extends State<AddPostScreen> {
           icon: const Icon(Icons.arrow_back),
         ),
         title: const Text(
-          'Post to',
+          'post comment',
         ),
         centerTitle: false,
         actions: <Widget>[
           TextButton(
             onPressed: () => postComment(
-              userProvider.getUser.uid,
-              userProvider.getUser.username,
+              userId,
+              username,
             ),
             child: const Text(
-              "Post",
+              "comment",
               style: TextStyle(
                   color: Colors.blueAccent,
                   fontWeight: FontWeight.bold,
@@ -89,7 +124,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
           )
         ],
       ),
-      // POST FORM
+      // Comment FORM
       body: Column(
         children: <Widget>[
           isLoading

@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tour_guide_app/Provider/user_provider.dart';
+import 'package:tour_guide_app/widgets/ReUsableCard2.dart';
 import 'package:tour_guide_app/widgets/comment_tile.dart';
 
 class FavouriteScreen extends StatefulWidget {
@@ -13,14 +15,34 @@ class FavouriteScreen extends StatefulWidget {
 
 class _FavouriteScreenState extends State<FavouriteScreen> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getUsername();
+  }
+
+  getUsername() async {
+    DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
+
+    setState(() {
+      userId = (snap.data() as Map<String, dynamic>)['uid'];
+    });
+    print(snap.data());
+  }
+
+  String userId = '';
+  @override
   Widget build(BuildContext context) {
-    final UserProvider userProvider = Provider.of<UserProvider>(context);
+    // final UserProvider userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
       appBar: AppBar(),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
-            .collection('posts')
-            .where('favouritedBy', arrayContains: userProvider.getUser.uid)
+            .collection('sites')
+            .where('favouritedBy', arrayContains: userId)
             .snapshots(),
         builder: (context,
             AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
@@ -36,8 +58,9 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                   // horizontal: width > webScreenSize ? width * 0.3 : 0,
                   // vertical: width > webScreenSize ? 15 : 0,
                   ),
-              child: Comment_tile(
+              child: ReUsableCard2(
                 snap: snapshot.data!.docs[index].data(),
+                siteName: '',
               ),
             ),
           );

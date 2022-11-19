@@ -32,7 +32,7 @@ class _Comment_tileState extends State<Comment_tile> {
 
   @override
   Widget build(BuildContext context) {
-    final model.User user = Provider.of<UserProvider>(context).getUser;
+    // final model.User user = Provider.of<UserProvider>(context).getUser;
     // final width = MediaQuery.of(context).size.width;
 
     return Container(
@@ -74,46 +74,46 @@ class _Comment_tileState extends State<Comment_tile> {
                     ),
                   ),
                 ),
-                widget.snap['uid'].toString() == user.uid
-                    ? IconButton(
-                        onPressed: () {
-                          showDialog(
-                            useRootNavigator: false,
-                            context: context,
-                            builder: (context) {
-                              return Dialog(
-                                child: ListView(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 16),
-                                    shrinkWrap: true,
-                                    children: [
-                                      'favourite',
-                                    ]
-                                        .map(
-                                          (e) => InkWell(
-                                            child: Container(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 12,
-                                                      horizontal: 16),
-                                              child: Text(e),
-                                            ),
-                                            onTap: () {
-                                              addFavourite(
-                                                widget.snap['CommentId']
-                                                    .toString(),
-                                              );
-                                            },
-                                          ),
-                                        )
-                                        .toList()),
-                              );
-                            },
-                          );
-                        },
-                        icon: const Icon(Icons.more_vert),
-                      )
-                    : Container(),
+                // widget.snap['uid'].toString() == user.uid
+                //     ? IconButton(
+                //         onPressed: () {
+                //           showDialog(
+                //             useRootNavigator: false,
+                //             context: context,
+                //             builder: (context) {
+                //               return Dialog(
+                //                 child: ListView(
+                //                     padding: const EdgeInsets.symmetric(
+                //                         vertical: 16),
+                //                     shrinkWrap: true,
+                //                     children: [
+                //                       'favourite',
+                //                     ]
+                //                         .map(
+                //                           (e) => InkWell(
+                //                             child: Container(
+                //                               padding:
+                //                                   const EdgeInsets.symmetric(
+                //                                       vertical: 12,
+                //                                       horizontal: 16),
+                //                               child: Text(e),
+                //                             ),
+                //                             onTap: () {
+                //                               addFavourite(
+                //                                 widget.snap['CommentId']
+                //                                     .toString(),
+                //                               );
+                //                             },
+                //                           ),
+                //                         )
+                //                         .toList()),
+                //               );
+                //             },
+                //           );
+                //         },
+                //         icon: const Icon(Icons.more_vert),
+                //       )
+                //     : Container(),
               ],
             ),
           ),
