@@ -17,7 +17,6 @@ class _Places2State extends State<Places2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection('sites').snapshots(),
         builder: (context,

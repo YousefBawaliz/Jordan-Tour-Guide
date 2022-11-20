@@ -9,6 +9,7 @@ import 'package:tour_guide_app/Screens/login_screen.dart';
 import 'package:tour_guide_app/firebase_options.dart';
 import 'package:tour_guide_app/home-components/places.dart';
 import 'package:tour_guide_app/home-components/places2.dart';
+import 'package:tour_guide_app/homepage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -62,7 +63,7 @@ class MyApp extends StatelessWidget {
             );
           }
 
-          return const LogInScreen();
+          return const HomePage();
         },
       ),
     );
