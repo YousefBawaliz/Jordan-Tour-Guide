@@ -39,17 +39,23 @@ class _ReUsableCard2State extends State<ReUsableCard2> {
   // }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(20),
       height: 200,
       child: GestureDetector(
         onTap: () {
+          print(widget.snap['description']);
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => LoadingScreen(
-                  siteName: ' ${widget.snap['title']}',
+                  siteName: ' ${widget.snap['title']}'.trim(),
                   governorate: ' ${widget.snap['governorates']}'),
             ),
           );

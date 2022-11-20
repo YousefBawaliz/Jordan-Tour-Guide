@@ -69,32 +69,6 @@ class GoogleMapNavigatorState extends State<GoogleMapNavigator> {
     super.initState();
   }
 
-  // getsiteLng() async {
-  //   DocumentSnapshot snap = await FirebaseFirestore.instance
-  //       .collection('sites')
-  //       .doc('${widget.siteName}'.trim())
-  //       .get();
-
-  //   setState(() {
-  //     sitelat = (snap.data() as Map<String, dynamic>)['latitude'];
-  //   });
-  //   print('sitelat is $sitelat');
-  // }
-
-  // getStielat() async {
-  //   DocumentSnapshot snap = await FirebaseFirestore.instance
-  //       .collection('sites')
-  //       .doc('${widget.siteName}'.trim())
-  //       .get();
-
-  //   setState(() {
-  //     sitelon = (snap.data() as Map<String, dynamic>)['longitude'];
-  //   });
-  //   print('sitelon is $sitelon');
-  // }
-
-  // double sitelat = 1;
-  // double sitelon = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

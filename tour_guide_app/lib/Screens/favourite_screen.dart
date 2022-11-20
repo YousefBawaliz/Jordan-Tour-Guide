@@ -38,7 +38,9 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
   Widget build(BuildContext context) {
     // final UserProvider userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
-     
+      appBar: AppBar(
+        title: Text('Favourites'),
+      ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('sites')

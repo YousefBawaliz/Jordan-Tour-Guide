@@ -8,11 +8,13 @@ import 'package:tour_guide_app/Models/user.dart';
 import 'package:tour_guide_app/Provider/user_provider.dart';
 import 'package:tour_guide_app/Screens/MapsLoadingScreen.dart';
 import 'package:tour_guide_app/Screens/guide.dart';
+import 'package:tour_guide_app/Screens/post_comment_screen.dart';
 import 'package:tour_guide_app/Services/GetWeather.dart';
 import 'package:tour_guide_app/home-components/places.dart';
 import 'package:tour_guide_app/home-components/places2.dart';
+import 'package:tour_guide_app/homepage.dart';
 import 'package:tour_guide_app/utils/utils.dart';
-import '../Models/Destinations.dart';
+
 import '../widgets/weatherWidget.dart';
 import 'package:tour_guide_app/Models/user.dart ' as model;
 
@@ -120,7 +122,7 @@ class _DestinationPageState extends State<DestinationPage> {
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Places2(),
+                  builder: (context) => HomePage(),
                 ));
           },
           child: Icon(
@@ -213,66 +215,91 @@ class _DestinationPageState extends State<DestinationPage> {
                 ],
               ),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 3),
-              child: Container(
-                margin: EdgeInsets.only(left: 10, right: 10),
-                child: Column(
-                  children: [
-                    ExpansionPanelList(
-                        animationDuration: Duration(milliseconds: 500),
-                        dividerColor: Colors.black87,
-                        elevation: 1,
-                        children: [
-                          ExpansionPanel(
-                            headerBuilder: (context, isExpanded) {
-                              return Text("What to see");
-                            },
-                            body: Text(description),
-                            isExpanded: expanded[0],
-                          ),
-                          ExpansionPanel(
-                            headerBuilder: (context, isExpanded) {
-                              return Text("Activites");
-                            },
-                            body: Text(
-                                " An inscription written by “Abdomanchos”, indicates that the tomb was to be used for himself and his family, probably in the reign of Malichus II (40- 70 AD)."),
-                            isExpanded: expanded[1],
-                          ),
-                          ExpansionPanel(
-                            headerBuilder: (context, isExpanded) {
-                              return Text("Reviews");
-                            },
-                            body: Text(
-                                " An inscription written by “Abdomanchos”, indicates that the tomb was to be used for himself and his family, probably in the reign of Malichus II (40- 70 AD)."),
-                            isExpanded: expanded[2],
-                          ),
-                          ExpansionPanel(
-                            headerBuilder: (context, isExpanded) {
-                              return Text("Guides to help you");
-                            },
-                            body: TextButton(
-                              child: Text(
-                                "press here",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              onPressed: () {
-                                Navigator.of(context)
-                                    .push(MaterialPageRoute(builder: (context) {
-                                  return Guide();
-                                }));
-                              },
-                            ),
-                            isExpanded: expanded[3],
-                          ),
-                        ],
-                        expansionCallback: (panelIndex, isExpanded) {
-                          setState(() {
-                            expanded[panelIndex] = !isExpanded;
-                          });
-                        }),
-                  ],
-                ),
+            Container(
+              margin: EdgeInsets.only(left: 0, right: 200),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return CommentsScreen(
+                                siteName: '${widget.siteName}'.trim());
+                          },
+                        ),
+                      );
+                    },
+                    child: Text(" click here to see reviews"),
+                  ),
+                  // ExpansionPanelList(
+                  //     animationDuration: Duration(milliseconds: 500),
+                  //     dividerColor: Colors.black87,
+                  //     elevation: 1,
+                  //     children: [
+                  //       ExpansionPanel(
+                  //         headerBuilder: (context, isExpanded) {
+                  //           return Text("What to see");
+                  //         },
+                  //         body: Text(description),
+                  //         isExpanded: expanded[0],
+                  //       ),
+                  //       ExpansionPanel(
+                  //         headerBuilder: (context, isExpanded) {
+                  //           return Text("Activites");
+                  //         },
+                  //         body: Text(
+                  //             " An inscription written by “Abdomanchos”, indicates that the tomb was to be used for himself and his family, probably in the reign of Malichus II (40- 70 AD)."),
+                  //         isExpanded: expanded[1],
+                  //       ),
+                  //       ExpansionPanel(
+                  //         headerBuilder: (context, isExpanded) {
+                  //           return Text("Reviews");
+                  //         },
+                  //         body: InkWell(
+                  //           onTap: () {
+                  //             Navigator.push(
+                  //               context,
+                  //               MaterialPageRoute(
+                  //                 builder: (context) {
+                  //                   return CommentsScreen(
+                  //                       siteName:
+                  //                           '${widget.siteName}'.trim());
+                  //                 },
+                  //               ),
+                  //             );
+                  //           },
+                  //           child: Text(" click here to see reviews"),
+                  //         ),
+                  //         isExpanded: expanded[2],
+                  //       ),
+                  //       ExpansionPanel(
+                  //         headerBuilder: (context, isExpanded) {
+                  //           return Text("Guides to help you");
+                  //         },
+                  //         body: TextButton(
+                  //           child: Text(
+                  //             "press here",
+                  //             style: TextStyle(color: Colors.white),
+                  //           ),
+                  //           onPressed: () {
+                  //             Navigator.of(context)
+                  //                 .push(MaterialPageRoute(builder: (context) {
+                  //               return Guide();
+                  //             }));
+                  //           },
+                  //         ),
+                  //         isExpanded: expanded[3],
+                  //       ),
+                  //     ],
+                  //     expansionCallback: (panelIndex, isExpanded) {
+                  //       setState(() {
+                  //         expanded[panelIndex] = !isExpanded;
+                  //       });
+                  //     }),
+                ],
               ),
             ),
           ],

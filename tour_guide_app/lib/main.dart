@@ -3,9 +3,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tour_guide_app/Provider/user_provider.dart';
-import 'package:tour_guide_app/Screens/add_comment_screen.dart';
 import 'package:tour_guide_app/Screens/favourite_screen.dart';
 import 'package:tour_guide_app/Screens/login_screen.dart';
+import 'package:tour_guide_app/Screens/post_comment_screen.dart';
+import 'package:tour_guide_app/Screens/search_screen.dart';
+import 'package:tour_guide_app/Screens/signup_screen.dart';
 import 'package:tour_guide_app/firebase_options.dart';
 import 'package:tour_guide_app/home-components/places.dart';
 import 'package:tour_guide_app/home-components/places2.dart';
@@ -48,7 +50,9 @@ class MyApp extends StatelessWidget {
               // return const ResponsiveLayout(
               //   mobileScreenLayout: MobileScreenLayout(),
               //   webScreenLayout: WebScreenLayout(),
-              return const Places2();
+              return const HomePage(
+                  // siteName: 'Dead Sea',
+                  );
             } else if (snapshot.hasError) {
               return Center(
                 child: Text('${snapshot.error}'),
@@ -63,7 +67,7 @@ class MyApp extends StatelessWidget {
             );
           }
 
-          return const HomePage();
+          return const LogInScreen();
         },
       ),
     );

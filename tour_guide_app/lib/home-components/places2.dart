@@ -29,13 +29,9 @@ class _Places2State extends State<Places2> {
           return ListView.builder(
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (ctx, index) => Container(
-              margin: EdgeInsets.symmetric(
-                  // horizontal: width > webScreenSize ? width * 0.3 : 0,
-                  // vertical: width > webScreenSize ? 15 : 0,
-                  ),
               child: ReUsableCard2(
                 snap: snapshot.data!.docs[index].data(),
-                siteName: 'Petra',
+                siteName: '',
               ),
             ),
           );

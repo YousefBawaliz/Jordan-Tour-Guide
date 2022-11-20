@@ -3,6 +3,7 @@ import 'package:tour_guide_app/Firebase_Services/firebase_auth.dart';
 import 'package:tour_guide_app/Screens/signup_screen.dart';
 import 'package:tour_guide_app/home-components/places.dart';
 import 'package:tour_guide_app/home-components/places2.dart';
+import 'package:tour_guide_app/homepage.dart';
 import 'package:tour_guide_app/utils/colors.dart';
 import 'package:tour_guide_app/utils/utils.dart';
 import 'package:tour_guide_app/widgets/textfieldinput.dart';
@@ -35,16 +36,8 @@ class _LogInScreenState extends State<LogInScreen> {
         .logInUser(email: _email.text, password: _password.text);
 
     if (res == "success") {
-      // Navigator.of(context).pushReplacement(
-      //   MaterialPageRoute(
-      //     builder: (context) => const ResponsiveLayout(
-      //       mobileScreenLayout: MobileScreenLayout(),
-      //       webScreenLayout: WebScreenLayout(),
-      //     ),
-      //   ),
-      // );
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const Places2()),
+        MaterialPageRoute(builder: (context) => const HomePage()),
       );
     } else {
       showSnackBar(context, res);
@@ -72,8 +65,8 @@ class _LogInScreenState extends State<LogInScreen> {
           child: Column(
             children: [
               Flexible(
-                child: Container(),
                 flex: 2,
+                child: Container(),
               ),
               //image
               Container(
@@ -87,7 +80,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 ),
               ),
               //spacing
-              SizedBox(
+              const SizedBox(
                 height: 64,
               ),
               //textField For email
@@ -96,7 +89,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   hintText: "enter your email",
                   textInputType: TextInputType.emailAddress),
               //spacing
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               //textField For password
@@ -115,7 +108,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 onTap: logInUser,
                 child: Container(
                   child: _isLoading
-                      ? Center(
+                      ? const Center(
                           child: CircularProgressIndicator(
                             color: primaryColor,
                           ),
@@ -133,7 +126,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 ),
               ),
               //spacing
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               Flexible(
@@ -145,21 +138,21 @@ class _LogInScreenState extends State<LogInScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
                     child: const Text(
                       'Dont have an account?',
                     ),
-                    padding: const EdgeInsets.symmetric(vertical: 8),
                   ),
                   GestureDetector(
                     onTap: NavigateToSignUp,
                     child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
                       child: const Text(
                         ' Signup.',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      padding: const EdgeInsets.symmetric(vertical: 8),
                     ),
                   ),
                 ],
