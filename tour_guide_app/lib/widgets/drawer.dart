@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:tour_guide_app/Screens/login_screen.dart';
 
 import 'package:tour_guide_app/Screens/welcome_screen.dart';
 
@@ -13,187 +16,60 @@ class _MyDrawerState extends State<MyDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: Column(
-        children: [
-          SizedBox(
-            height: 50,
-          ),
-          CircleAvatar(
-            radius: 60,
-            foregroundImage: NetworkImage(
-                "https://thumbs.dreamstime.com/b/user-icon-trendy-flat-style-isolated-grey-background-user-symbol-user-icon-trendy-flat-style-isolated-grey-background-123663211.jpg"),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Container(
-            height: 30,
-            width: 250,
-            child: ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(Colors.white)),
-              onPressed: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) {
-                  return WelcomeScreen();
-                }));
-              },
-              child: Text(
-                "Sign In",
-                style: TextStyle(color: Colors.black, fontSize: 20),
+        child: ListView(
+          children: [
+            UserAccountsDrawerHeader(
+              accountName: Text("username.co"),
+              accountEmail: Text("sundar@appmaking.co"),
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: NetworkImage(
+                    "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80"),
               ),
+              decoration: BoxDecoration(
+                
+                // image: DecorationImage(
+                //   image: NetworkImage(
+                //     "https://media.istockphoto.com/id/1224826528/video/light-grey-white-looped-gradient-abstract-background.jpg?b=1&s=640x640&k=20&c=QatHckhxcLGUbtYbbkKBHv3Kjr4ceCEPyB8EFWnnkYI=",
+                //   ),
+                //   fit: BoxFit.fill,
+                // ),
+              ),
+              // otherAccountsPictures: [
+              //   CircleAvatar(
+              //     backgroundColor: Colors.white,
+              //     backgroundImage: NetworkImage(
+              //         "https://randomuser.me/api/portraits/women/74.jpg"),
+              //   ),
+                
+              // ],
             ),
-          ),
-          SizedBox(
-            height: 60,
-          ),
-          GestureDetector(
-            child: Row(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(left: 20),
-                  child: Icon(
-                    Icons.rate_review,
-                    color: Colors.white60,
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: 30),
-                  child: Text(
-                    "rate the app",
-                    style: TextStyle(color: Colors.white60, fontSize: 20),
-                  ),
-                ),
-              ],
+            ListTile(
+              leading: Icon(Icons.login),
+              title: Text("Login"),
+              onTap: () {
+                 Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => LogInScreen(),
+      ),);
+              },
             ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          GestureDetector(
-            child: Row(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(left: 20),
-                  child: Icon(
-                    Icons.email,
-                    color: Colors.white60,
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: 30),
-                  child: Text(
-                    "email",
-                    style: TextStyle(color: Colors.white60, fontSize: 20),
-                  ),
-                ),
-              ],
+            ListTile(
+              leading: Icon(Icons.account_box),
+              title: Text("About"),
+              onTap: () {},
             ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          GestureDetector(
-            child: Row(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(left: 20),
-                  child: Icon(
-                    Icons.settings,
-                    color: Colors.white60,
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: 30),
-                  child: Text(
-                    "Setting",
-                    style: TextStyle(color: Colors.white60, fontSize: 20),
-                  ),
-                ),
-              ],
+            ListTile(
+              leading: Icon(Icons.grid_3x3_outlined),
+              title: Text("Products"),
+              onTap: () {},
             ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          GestureDetector(
-            child: Row(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(left: 20),
-                  child: Icon(
-                    Icons.favorite,
-                    color: Colors.white60,
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: 30),
-                  child: Text(
-                    "Favorite",
-                    style: TextStyle(color: Colors.white60, fontSize: 20),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          GestureDetector(
-            child: Row(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(left: 20),
-                  child: Icon(
-                    Icons.mobile_screen_share,
-                    color: Colors.white60,
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: 30),
-                  child: Text(
-                    "Call us",
-                    style: TextStyle(color: Colors.white60, fontSize: 20),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          GestureDetector(
-            // onTap: () async {
-            //   await FirebaseAuth.instance.signOut();
-
-            //   Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-            //     return Login();
-            //   }));
-            // },
-            child: Row(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(left: 20),
-                  child: Icon(
-                    Icons.logout,
-                    color: Colors.white60,
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: 30),
-                  child: Text(
-                    "Logout",
-                    style: TextStyle(color: Colors.white60, fontSize: 20),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-        ],
-      ),
-    );
+            ListTile(
+              leading: Icon(Icons.contact_mail),
+              title: Text("Logout"),
+              onTap: () {},
+            )
+          ],
+        ),
+      );
   }
 }
