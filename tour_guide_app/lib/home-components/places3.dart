@@ -2,7 +2,6 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import 'package:tour_guide_app/Models/Destinations.dart';
 import '../widgets/ReUsableCard2.dart';
 
 class Places3 extends StatefulWidget {

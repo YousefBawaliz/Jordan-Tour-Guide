@@ -54,14 +54,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     if (res != 'success') {
       showSnackBar(context, res);
     } else {
-      // Navigator.of(context).pushReplacement(
-      //   MaterialPageRoute(
-      //     builder: (context) => const ResponsiveLayout(
-      //       mobileScreenLayout: MobileScreenLayout(),
-      //       webScreenLayout: WebScreenLayout(),
-      //     ),
-      //   ),
-      // );
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const HomePage()),
       );
@@ -103,22 +95,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
               //spacing
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
 
-              // Stack(
-              //   children: const [
-              //     CircleAvatar(
-              //       radius: 64,
-              //       backgroundImage:
-              //           NetworkImage('https://i.stack.imgur.com/l60Hf.png'),
-              //       backgroundColor: Colors.red,
-              //     ),
-              //   ],
-              // ),
-              //spacing
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               //textfield for username
@@ -127,7 +108,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   hintText: "enter your username",
                   textInputType: TextInputType.text),
               //spacing
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
 
@@ -137,7 +118,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   hintText: "enter your email",
                   textInputType: TextInputType.emailAddress),
               //spacing
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               //textField For password
@@ -148,12 +129,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 isPass: true,
               ),
               //spacing
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
 
               //spacing
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               //sign up button
@@ -179,7 +160,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
               //spacing
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               Flexible(
@@ -191,21 +172,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
                     child: const Text(
                       'already have an account ?',
                     ),
-                    padding: const EdgeInsets.symmetric(vertical: 8),
                   ),
                   GestureDetector(
                     onTap: NavigateToLogIn,
                     child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
                       child: const Text(
                         ' Log in.',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      padding: const EdgeInsets.symmetric(vertical: 8),
                     ),
                   ),
                 ],

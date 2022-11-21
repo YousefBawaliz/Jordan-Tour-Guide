@@ -13,6 +13,7 @@ import 'package:tour_guide_app/Services/GetWeather.dart';
 import 'package:tour_guide_app/home-components/places.dart';
 import 'package:tour_guide_app/home-components/places2.dart';
 import 'package:tour_guide_app/homepage.dart';
+import 'package:tour_guide_app/utils/colors.dart';
 import 'package:tour_guide_app/utils/utils.dart';
 
 import '../widgets/weatherWidget.dart';
@@ -215,8 +216,11 @@ class _DestinationPageState extends State<DestinationPage> {
                 ],
               ),
             ),
+            SizedBox(
+              height: 100,
+            ),
             Container(
-              margin: EdgeInsets.only(left: 0, right: 200),
+              margin: EdgeInsets.only(left: 0, right: 0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -232,8 +236,20 @@ class _DestinationPageState extends State<DestinationPage> {
                         ),
                       );
                     },
-                    child: Text(" click here to see reviews"),
+                    child: Container(
+                      width: double.infinity,
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      decoration: const ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                        ),
+                        color: blueColor,
+                      ),
+                      child: Text(" click here to see reviews"),
+                    ),
                   ),
+
                   // ExpansionPanelList(
                   //     animationDuration: Duration(milliseconds: 500),
                   //     dividerColor: Colors.black87,
