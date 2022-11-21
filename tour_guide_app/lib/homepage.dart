@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tour_guide_app/Screens/convertCurrency_screen.dart';
 import 'package:tour_guide_app/Screens/favourite_screen.dart';
 import 'package:tour_guide_app/Screens/guide.dart';
 import 'package:tour_guide_app/Screens/login_screen.dart';
@@ -25,7 +26,7 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 5, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
   }
 
   @override
@@ -73,8 +74,8 @@ class _HomePageState extends State<HomePage>
         tobTabPar(),
         FavouriteScreen(),
         SearchScreen(),
-        Test(),
-        MyDrawer()
+        // Test(),
+        convertCurrency()
       ]),
       bottomNavigationBar: Container(
         color: Colors.grey.shade900,
@@ -94,15 +95,15 @@ class _HomePageState extends State<HomePage>
                 icon: Icon(Icons.search),
                 text: "Search",
               ),
-              Tab(
-                icon: Icon(Icons.person),
-                text: "Guides",
-              ),
+              // Tab(
+              //   icon: Icon(Icons.person),
+              //   text: "Guides",
+              // ),
               Tab(
                 icon: Icon(
-                  Icons.list,
+                  Icons.currency_exchange,
                 ),
-                text: "More",
+                text: "Currency",
               )
             ]),
       ),
