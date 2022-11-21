@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tour_guide_app/home-components/places.dart';
 import 'package:tour_guide_app/home-components/places2.dart';
 import 'package:tour_guide_app/home-components/places3.dart';
+import 'package:tour_guide_app/home-components/places4.dart';
 
 class tobTabPar extends StatefulWidget {
   const tobTabPar({super.key});
@@ -44,7 +45,7 @@ class _tobTabParState extends State<tobTabPar>
                   text: ("Museums"),
                 ),
                 Tab(
-                  text: ("Hotel"),
+                  text: ("Restaurants"),
                 ),
               ]),
         ),
@@ -52,7 +53,7 @@ class _tobTabParState extends State<tobTabPar>
       body: TabBarView(controller: _tabController, children: <Widget>[
         Places2(),
         Places3(),
-        Text("Hotel API"),
+        Places4(),
       ]),
     );
   }

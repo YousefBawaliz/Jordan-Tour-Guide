@@ -119,7 +119,7 @@ class _DestinationPageState extends State<DestinationPage> {
     // User userProvider = Provider.of<UserProvider>(context).getUser;
     return Scaffold(
       appBar: AppBar(
-        title: Text(''),
+        title: Text('${widget.siteName}'.trim()),
         leading: InkWell(
           onTap: () {
             Navigator.pushReplacement(
@@ -195,7 +195,7 @@ class _DestinationPageState extends State<DestinationPage> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(left: 30, right: 30, top: 40),
+              margin: EdgeInsets.only(left: 30, right: 30, top: 40, bottom: 20),
               child: Row(
                 children: [
                   Expanded(
@@ -204,7 +204,7 @@ class _DestinationPageState extends State<DestinationPage> {
                       height: 200,
                       width: 300,
                       child: Container(
-                        margin: EdgeInsets.all(10),
+                        margin: EdgeInsets.all(5),
                         // child: Text(mysiteStorage.getSiteDescription(
                         //     siteName: widget.siteName)),
                         child: Text(
@@ -216,7 +216,9 @@ class _DestinationPageState extends State<DestinationPage> {
                   ),
                   Expanded(
                       child: Container(
-                    margin: EdgeInsets.only(bottom: 80),
+                    margin: EdgeInsets.only(
+                      bottom: 80,
+                    ),
                     child: Weather(
                         icon: weatherIcon, tempreure: temp.toInt().toString()),
                   )),

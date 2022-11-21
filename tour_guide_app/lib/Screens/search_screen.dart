@@ -19,7 +19,7 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
         appBar: AppBar(
           leading: null,
-          backgroundColor: mobileBackgroundColor,
+          backgroundColor: Colors.grey.shade900,
           title: Form(
             child: TextFormField(
               controller: searchController,
