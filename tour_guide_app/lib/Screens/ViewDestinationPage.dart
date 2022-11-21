@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -128,7 +130,7 @@ class _DestinationPageState extends State<DestinationPage> {
           },
           child: Icon(
             Icons.arrow_back_ios,
-            color: Colors.black54,
+            color: Colors.white,
           ),
         ),
         actions: [
@@ -151,7 +153,7 @@ class _DestinationPageState extends State<DestinationPage> {
           ),
           IconButton(
             onPressed: () {
-              Navigator.push(
+              Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (context) => MapsLoadingScreen(
@@ -193,7 +195,7 @@ class _DestinationPageState extends State<DestinationPage> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(left: 0, right: 10),
+              margin: EdgeInsets.only(left: 30, right: 30, top: 40),
               child: Row(
                 children: [
                   Expanded(
@@ -205,22 +207,24 @@ class _DestinationPageState extends State<DestinationPage> {
                         margin: EdgeInsets.all(10),
                         // child: Text(mysiteStorage.getSiteDescription(
                         //     siteName: widget.siteName)),
-                        child: Text('$description'),
+                        child: Text(
+                          '$description',
+                          style: TextStyle(fontSize: 15),
+                        ),
                       ),
                     ),
                   ),
                   Expanded(
-                      child: Weather(
-                          icon: weatherIcon,
-                          tempreure: temp.toInt().toString())),
+                      child: Container(
+                    margin: EdgeInsets.only(bottom: 80),
+                    child: Weather(
+                        icon: weatherIcon, tempreure: temp.toInt().toString()),
+                  )),
                 ],
               ),
             ),
-            SizedBox(
-              height: 100,
-            ),
             Container(
-              margin: EdgeInsets.only(left: 0, right: 0),
+              margin: EdgeInsets.only(left: 40, right: 40),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -244,7 +248,7 @@ class _DestinationPageState extends State<DestinationPage> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(4)),
                         ),
-                        color: blueColor,
+                        color: Colors.white38,
                       ),
                       child: Text(" click here to see reviews"),
                     ),

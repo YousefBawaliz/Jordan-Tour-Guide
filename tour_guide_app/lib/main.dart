@@ -8,6 +8,7 @@ import 'package:tour_guide_app/Screens/login_screen.dart';
 import 'package:tour_guide_app/Screens/post_comment_screen.dart';
 import 'package:tour_guide_app/Screens/search_screen.dart';
 import 'package:tour_guide_app/Screens/signup_screen.dart';
+import 'package:tour_guide_app/Screens/splash_Screen.dart';
 import 'package:tour_guide_app/firebase_options.dart';
 import 'package:tour_guide_app/home-components/places.dart';
 import 'package:tour_guide_app/home-components/places2.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
 
     // );
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Instagram clone',
       theme: ThemeData.dark().copyWith(),
       // home: ResponsiveLayout(
@@ -50,7 +52,7 @@ class MyApp extends StatelessWidget {
               // return const ResponsiveLayout(
               //   mobileScreenLayout: MobileScreenLayout(),
               //   webScreenLayout: WebScreenLayout(),
-              return const HomePage(
+              return const Splash(
                   // siteName: 'Dead Sea',
                   );
             } else if (snapshot.hasError) {

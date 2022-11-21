@@ -41,20 +41,20 @@ class _HomePageState extends State<HomePage>
       appBar: AppBar(
         actions: [
           Container(
-            margin: EdgeInsets.only(right: 100),
+            margin: EdgeInsets.only(right: 140),
             alignment: Alignment.centerLeft,
             child: Text(
               "𝕁𝕆ℝ𝔻𝔸ℕ",
               style: TextStyle(fontSize: 30),
             ),
           ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.search,
-              size: 30,
-            ),
-          ),
+          // IconButton(
+          //   onPressed: () {},
+          //   icon: Icon(
+          //     Icons.search,
+          //     size: 30,
+          //   ),
+          // ),
         ],
         // actions: [Row(children: [
 
