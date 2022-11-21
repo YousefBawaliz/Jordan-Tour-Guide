@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:tour_guide_app/Models/Destinations.dart';
 import 'package:tour_guide_app/Screens/LoadingScreen.dart';
 import '../Screens/ViewDestinationPage.dart';
 
@@ -39,17 +38,23 @@ class _ReUsableCard2State extends State<ReUsableCard2> {
   // }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(20),
       height: 200,
       child: GestureDetector(
         onTap: () {
+          print(widget.snap['description']);
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => LoadingScreen(
-                  siteName: ' ${widget.snap['title']}',
+                  siteName: ' ${widget.snap['title']}'.trim(),
                   governorate: ' ${widget.snap['governorates']}'),
             ),
           );

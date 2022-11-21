@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:tour_guide_app/Provider/user_provider.dart';
+// import 'package:provider/provider.dart';
+// import 'package:tour_guide_app/Provider/user_provider.dart';
 import 'package:tour_guide_app/widgets/ReUsableCard2.dart';
-import 'package:tour_guide_app/widgets/comment_tile.dart';
 
 class FavouriteScreen extends StatefulWidget {
   const FavouriteScreen({super.key});
@@ -38,7 +37,9 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
   Widget build(BuildContext context) {
     // final UserProvider userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
-     
+      appBar: AppBar(
+        title: Text('Favourites'),
+      ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('sites')

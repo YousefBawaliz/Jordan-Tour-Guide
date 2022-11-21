@@ -1,21 +1,26 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:tour_guide_app/widgets/comment_tile.dart';
 
-class Comment_screen extends StatefulWidget {
-  const Comment_screen({super.key});
+import '../widgets/ReUsableCard2.dart';
+
+class Places3 extends StatefulWidget {
+  const Places3({super.key});
 
   @override
-  State<Comment_screen> createState() => _Comment_screenState();
+  State<Places3> createState() => _Places3State();
 }
 
-class _Comment_screenState extends State<Comment_screen> {
+class _Places3State extends State<Places3> {
+  // SiteStorage _siteData = SiteStorage();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('posts').snapshots(),
+        stream: FirebaseFirestore.instance
+            .collection('sites')
+            .where('isMuseum', isEqualTo: true)
+            .snapshots(),
         builder: (context,
             AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -26,12 +31,9 @@ class _Comment_screenState extends State<Comment_screen> {
           return ListView.builder(
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (ctx, index) => Container(
-              // margin: EdgeInsets.symmetric(
-              //     // horizontal: width > webScreenSize ? width * 0.3 : 0,
-              //     // vertical: width > webScreenSize ? 15 : 0,
-              //     ),
-              child: Comment_tile(
+              child: ReUsableCard2(
                 snap: snapshot.data!.docs[index].data(),
+                siteName: '',
               ),
             ),
           );
