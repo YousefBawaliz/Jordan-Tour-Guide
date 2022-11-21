@@ -53,7 +53,7 @@ class _MyDrawerState extends State<MyDrawer> {
             accountEmail: Text(email.isNotEmpty ? email : ''),
             currentAccountPicture: CircleAvatar(
               backgroundImage: NetworkImage(
-                  "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80"),
+                  "https://st4.depositphotos.com/11634452/41441/v/600/depositphotos_414416674-stock-illustration-picture-profile-icon-male-icon.jpg"),
             ),
             decoration: BoxDecoration(
 

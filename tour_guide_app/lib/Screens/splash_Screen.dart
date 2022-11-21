@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tour_guide_app/Screens/signup_screen.dart';
+import 'package:tour_guide_app/homepage.dart';
 import 'package:tour_guide_app/main.dart';
 
 class Splash extends StatefulWidget {
@@ -19,12 +20,12 @@ class _SplashState extends State<Splash> {
 
   navigatehome() async {
     await Future.delayed(
-      Duration(milliseconds: 1500),
+      Duration(milliseconds: 2000),
       () {
-        Navigator.push(
+        Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => SignUpScreen(),
+              builder: (context) => HomePage(),
             ));
       },
     );
@@ -32,7 +33,7 @@ class _SplashState extends State<Splash> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 57, 43, 43),
+      // backgroundColor: Color.fromARGB(255, 57, 43, 43),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -53,7 +54,7 @@ class _SplashState extends State<Splash> {
             Text(
               "Welcome Jordan Tour",
               style: TextStyle(
-                  fontSize: 22, color: Color.fromARGB(255, 162, 79, 48)),
+                  fontSize: 22, color: Color.fromARGB(255, 231, 225, 223)),
             ),
           ],
         ),
