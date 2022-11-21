@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tour_guide_app/Firebase_Services/firebase_auth.dart';
+import 'package:tour_guide_app/Screens/forgot_passwor.dart';
 import 'package:tour_guide_app/Screens/signup_screen.dart';
 import 'package:tour_guide_app/home-components/places.dart';
 import 'package:tour_guide_app/home-components/places2.dart';
@@ -128,6 +129,19 @@ class _LogInScreenState extends State<LogInScreen> {
               //spacing
               const SizedBox(
                 height: 24,
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ForgotPassword()));
+                },
+                child: const Text("Forgot Password?",
+                    style: TextStyle(
+                      color: Color(0xff6A707C),
+                      fontSize: 15,
+                    )),
               ),
               Flexible(
                 child: Container(),
