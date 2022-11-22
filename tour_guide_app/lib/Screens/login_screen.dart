@@ -71,7 +71,7 @@ class _LogInScreenState extends State<LogInScreen> {
               ),
               //image
               Container(
-                height: 84,
+                height: 80,
                 width: 100,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
@@ -82,7 +82,7 @@ class _LogInScreenState extends State<LogInScreen> {
               ),
               //spacing
               const SizedBox(
-                height: 64,
+                height: 40,
               ),
               //textField For email
               TextFieldInput(
@@ -91,7 +91,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   textInputType: TextInputType.emailAddress),
               //spacing
               const SizedBox(
-                height: 24,
+                height: 22,
               ),
               //textField For password
               TextFieldInput(
@@ -102,7 +102,7 @@ class _LogInScreenState extends State<LogInScreen> {
               ),
               //spacing
               SizedBox(
-                height: 24,
+                height: 22,
               ),
               //log in button
               InkWell(
@@ -128,7 +128,7 @@ class _LogInScreenState extends State<LogInScreen> {
               ),
               //spacing
               const SizedBox(
-                height: 24,
+                height: 20,
               ),
               InkWell(
                 onTap: () {

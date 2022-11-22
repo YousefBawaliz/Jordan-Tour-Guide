@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 
 import '../widgets/ReUsableCard2.dart';
 
-class Places2 extends StatefulWidget {
-  const Places2({super.key});
+class Places5 extends StatefulWidget {
+  const Places5({super.key});
 
   @override
-  State<Places2> createState() => _Places2State();
+  State<Places5> createState() => _Places5State();
 }
 
-class _Places2State extends State<Places2> {
+class _Places5State extends State<Places5> {
   // SiteStorage _siteData = SiteStorage();
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class _Places2State extends State<Places2> {
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('sites')
-            .where('isHistoric', isEqualTo: true)
+            .where('isHotel', isEqualTo: true)
             .snapshots(),
         builder: (context,
             AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
