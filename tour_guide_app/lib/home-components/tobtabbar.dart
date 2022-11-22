@@ -3,6 +3,7 @@ import 'package:tour_guide_app/home-components/places.dart';
 import 'package:tour_guide_app/home-components/places2.dart';
 import 'package:tour_guide_app/home-components/places3.dart';
 import 'package:tour_guide_app/home-components/places4.dart';
+import 'package:tour_guide_app/home-components/places5.dart';
 
 class tobTabPar extends StatefulWidget {
   const tobTabPar({super.key});
@@ -17,7 +18,7 @@ class _tobTabParState extends State<tobTabPar>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
   }
 
   @override
@@ -39,7 +40,7 @@ class _tobTabParState extends State<tobTabPar>
               controller: _tabController,
               tabs: <Widget>[
                 Tab(
-                  text: ("Places"),
+                  text: ("Historic"),
                 ),
                 Tab(
                   text: ("Museums"),
@@ -47,14 +48,15 @@ class _tobTabParState extends State<tobTabPar>
                 Tab(
                   text: ("Restaurants"),
                 ),
+                Tab(
+                  text: ("Hotels"),
+                ),
               ]),
         ),
       ),
-      body: TabBarView(controller: _tabController, children: <Widget>[
-        Places2(),
-        Places3(),
-        Places4(),
-      ]),
+      body: TabBarView(
+          controller: _tabController,
+          children: <Widget>[Places2(), Places3(), Places4(), Places5()]),
     );
   }
 }
