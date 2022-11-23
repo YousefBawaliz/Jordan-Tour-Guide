@@ -42,22 +42,22 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
       drawer: MyDrawer(),
       appBar: AppBar(
-        actions: [
-          Container(
-            margin: EdgeInsets.only(right: 140, bottom: 4),
-            alignment: Alignment.centerLeft,
-            child: DefaultTextStyle(
-              style: GoogleFonts.dangrek(
-                  textStyle: Theme.of(context).textTheme.displayMedium,
-                  fontSize: 40),
-              child: AnimatedTextKit(
-                animatedTexts: [
-                  TyperAnimatedText("JORDAN",
-                      speed: Duration(milliseconds: 500)),
-                ],
-              ),
-            ),
+        centerTitle: true,
+        title: Container(
+          child: DefaultTextStyle(
+            style: GoogleFonts.dangrek(
+                textStyle: Theme.of(context).textTheme.displayMedium,
+                fontSize: 32),
+            child: Text("Jordan Tour Guide"),
+            // child: AnimatedTextKit(
+            //   animatedTexts: [
+            //     TyperAnimatedText("JORDAN TOUR",
+            //         speed: Duration(milliseconds: 400)),
+            //   ],
+            // ),
           ),
+        ),
+        actions: [
           // IconButton(
           //   onPressed: () {},
           //   icon: Icon(

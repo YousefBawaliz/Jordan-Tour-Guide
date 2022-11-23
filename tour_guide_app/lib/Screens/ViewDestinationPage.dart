@@ -149,7 +149,7 @@ class _DestinationPageState extends State<DestinationPage> {
           ),
           IconButton(
             onPressed: () {
-              Navigator.pushReplacement(
+              Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => MapsLoadingScreen(
