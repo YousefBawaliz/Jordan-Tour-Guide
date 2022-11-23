@@ -33,7 +33,6 @@ class _tobTabParState extends State<tobTabPar>
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: Container(
-          color: Colors.grey.shade900,
           child: TabBar(
               indicator:
                   UnderlineTabIndicator(borderSide: BorderSide(width: 0)),

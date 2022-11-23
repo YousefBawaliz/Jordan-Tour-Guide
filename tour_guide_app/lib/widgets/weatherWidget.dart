@@ -14,21 +14,19 @@ class _WeatherState extends State<Weather> {
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
-            color: Colors.grey.shade900,
+            // color: Colors.grey.shade900,
             borderRadius: BorderRadius.circular(16)),
-        height: 150,
-        width: 100,
         child: Column(
           children: [
             SizedBox(
               height: 15,
             ),
-            Text(widget.icon, style: TextStyle(fontSize: 70)),
+            Text(widget.icon, style: TextStyle(fontSize: 50)),
             SizedBox(
               height: 10,
             ),
             Text(
-              widget.tempreure,
+              widget.tempreure + "°C",
               style: TextStyle(fontSize: 20),
             )
           ],

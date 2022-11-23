@@ -5,21 +5,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:readmore/readmore.dart';
 import 'package:tour_guide_app/Firebase_Services/firestore_methods.dart';
-import 'package:tour_guide_app/Models/user.dart';
-import 'package:tour_guide_app/Provider/user_provider.dart';
+
 import 'package:tour_guide_app/Screens/MapsLoadingScreen.dart';
-import 'package:tour_guide_app/Screens/guide.dart';
 import 'package:tour_guide_app/Screens/post_comment_screen.dart';
 import 'package:tour_guide_app/Services/GetWeather.dart';
-import 'package:tour_guide_app/home-components/places.dart';
-import 'package:tour_guide_app/home-components/places2.dart';
+
 import 'package:tour_guide_app/homepage.dart';
-import 'package:tour_guide_app/utils/colors.dart';
 import 'package:tour_guide_app/utils/utils.dart';
 
 import '../widgets/weatherWidget.dart';
-import 'package:tour_guide_app/Models/user.dart ' as model;
 
 class DestinationPage extends StatefulWidget {
   final String siteName;
@@ -195,30 +191,30 @@ class _DestinationPageState extends State<DestinationPage> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(left: 30, right: 30, top: 40, bottom: 20),
+              margin: EdgeInsets.only(left: 40, right: 40, top: 50, bottom: 50),
               child: Row(
                 children: [
                   Expanded(
                     flex: 3,
                     child: Container(
-                      height: 200,
-                      width: 300,
                       child: Container(
-                        margin: EdgeInsets.all(5),
+                        margin: EdgeInsets.only(right: 5),
                         // child: Text(mysiteStorage.getSiteDescription(
                         //     siteName: widget.siteName)),
-                        child: Text(
+                        child: ReadMoreText(
                           '$description',
                           style: TextStyle(fontSize: 15),
+                          trimLines: 5,
+                          colorClickableText: Colors.black,
+                          trimMode: TrimMode.Line,
+                          trimCollapsedText: '...Read more',
+                          trimExpandedText: ' Less',
                         ),
                       ),
                     ),
                   ),
                   Expanded(
                       child: Container(
-                    margin: EdgeInsets.only(
-                      bottom: 80,
-                    ),
                     child: Weather(
                         icon: weatherIcon, tempreure: temp.toInt().toString()),
                   )),
@@ -250,9 +246,9 @@ class _DestinationPageState extends State<DestinationPage> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(4)),
                         ),
-                        color: Colors.white38,
+                        color: Colors.grey,
                       ),
-                      child: Text(" click here to see reviews"),
+                      child: Text(" reviews and comments "),
                     ),
                   ),
 
