@@ -18,7 +18,13 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: null,
+          actions: [
+            Icon(Icons.search),
+            SizedBox(
+              width: 15,
+            ),
+          ],
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.grey.shade900,
           title: Form(
             child: TextFormField(

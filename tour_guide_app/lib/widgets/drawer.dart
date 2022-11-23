@@ -73,17 +73,19 @@ class _MyDrawerState extends State<MyDrawer> {
 
             // ],
           ),
-          ListTile(
-            leading: Icon(Icons.login),
-            title: Text("Login"),
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => LogInScreen(),
+          _auth.currentUser != null
+              ? Container()
+              : ListTile(
+                  leading: Icon(Icons.login),
+                  title: Text("Login"),
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => LogInScreen(),
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
-          ),
           ListTile(
             leading: Icon(Icons.account_box),
             title: Text("About"),

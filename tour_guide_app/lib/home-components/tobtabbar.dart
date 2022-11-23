@@ -45,7 +45,7 @@ class _tobTabParState extends State<tobTabPar>
                   text: ("Museums"),
                 ),
                 Tab(
-                  text: ("Restaurants"),
+                  text: ("cuisine"),
                 ),
                 Tab(
                   text: ("Hotels"),
