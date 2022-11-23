@@ -1,4 +1,6 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tour_guide_app/Screens/convertCurrency_screen.dart';
 import 'package:tour_guide_app/Screens/favourite_screen.dart';
 import 'package:tour_guide_app/Screens/guide.dart';
@@ -42,11 +44,18 @@ class _HomePageState extends State<HomePage>
       appBar: AppBar(
         actions: [
           Container(
-            margin: EdgeInsets.only(right: 140),
+            margin: EdgeInsets.only(right: 140, bottom: 4),
             alignment: Alignment.centerLeft,
-            child: Text(
-              "𝕁𝕆ℝ𝔻𝔸ℕ",
-              style: TextStyle(fontSize: 30),
+            child: DefaultTextStyle(
+              style: GoogleFonts.dangrek(
+                  textStyle: Theme.of(context).textTheme.displayMedium,
+                  fontSize: 40),
+              child: AnimatedTextKit(
+                animatedTexts: [
+                  TyperAnimatedText("JORDAN",
+                      speed: Duration(milliseconds: 500)),
+                ],
+              ),
             ),
           ),
           // IconButton(
@@ -78,7 +87,6 @@ class _HomePageState extends State<HomePage>
         convertCurrency()
       ]),
       bottomNavigationBar: Container(
-        color: Colors.grey.shade900,
         child: TabBar(
             indicator: UnderlineTabIndicator(borderSide: BorderSide(width: 0)),
             controller: _tabController,

@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:tour_guide_app/Screens/forgot_passwor.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tour_guide_app/Screens/login_screen.dart';
 import 'package:tour_guide_app/Screens/splash_Screen.dart';
 import 'package:tour_guide_app/firebase_options.dart';
@@ -20,17 +20,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // return MaterialApp(
-    //   title: 'Flutter Demo',
-    //   theme: ThemeData.dark().copyWith(),
-    //   // home: SignUpScreen(),
-    //   // home: MapsLoadingScreen(siteName: 'Petra'),
-
-    // );
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Instagram clone',
-      theme: ThemeData.dark().copyWith(),
+      title: 'Jordan Tour Guide',
+      theme: ThemeData.dark().copyWith(
+          textTheme:
+              GoogleFonts.dangrekTextTheme(Theme.of(context).textTheme).apply(
+        bodyColor: Colors.white,
+        displayColor: Colors.white,
+      )),
+
       // home: ResponsiveLayout(
       //     mobileScreenLayout: MobileScreenLayout(),
       //     webScreenLayout: WebScreenLayout()),
